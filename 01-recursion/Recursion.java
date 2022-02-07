@@ -102,6 +102,8 @@ public class Recursion {
         System.out.println(reverse("racecar"));
         System.out.println(reverse("KONSTANTINOVICH"));
         System.out.println(sqrt(35));
+        System.out.println(sqrt(34434));
+
 
 
     }
