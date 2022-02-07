@@ -64,30 +64,27 @@ public class Recursion {
         }
     }
 
+
     /*
-          *@param s any string
-          *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
-          */
-          public static String reverse(String s){
-            if(s.length() < 2){
-              return s;
-            }
-            return reverse(s.substring(1)) + s.charAt(0);
-          }
-
-
-          /*
-          *@param n any non-negative value you want to take the sqrt of
-          *@return the approximate sqrt of n within a tolerance of 0.001%
-          */
-          public static double sqrt(double n){
-            //Hint: This is a wrapper method.
-            return 2.0;
-          }
+     *@param s any string
+     *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
+     */
+    public static String reverse(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        return reverse(s.substring(1)) + s.charAt(0);
+    }
 
 
 
-
+    /*
+     *@param n any non-negative value you want to take the sqrt of
+     *@return the approximate sqrt of n within a tolerance of 0.001%
+     */
+    public static double sqrt(double n) {
+        return sqrt(n, 1);
+    }
 
 
 
@@ -96,8 +93,9 @@ public class Recursion {
 
 
     public static void main(String[] args) {
-      System.out.println(reverse("abcdefg"));
-      System.out.println(reverse("KONSTANTINOVICH"));
+        System.out.println(reverse("racecar"));
+        System.out.println(reverse("KONSTANTINOVICH"));
+        System.out.println(sqrt(35));
 
 
     }
