@@ -112,10 +112,10 @@ public class Recursion {
                 duplicate = true;
             }
         }
-
         if (duplicate == false) {
             return 1;
         }
+
     } else {
 
         for (char a = 'a'; a <= 'z'; a++) {
@@ -126,7 +126,23 @@ public class Recursion {
     return sum;
 }
 
+/*
+            *@param n any non-negative value
+            *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
+            */
+            public static int fibIter(int n, int f1, int f2){
+              //DO NOT call fibIter more than once
 
+              if (n == 0){
+              return f2;
+              }
+              if (n == 1){
+              return f1;
+
+              }else{
+              return fibIter(n - 1, f1 + f2, f1);
+            }
+          }
 
 
 
@@ -135,13 +151,17 @@ public class Recursion {
 
 
     public static void main(String[] args) {
-        System.out.println(reverse("racecar"));
-        System.out.println(reverse("KONSTANTINOVICH"));
-        System.out.println(sqrt(35));
-        System.out.println(sqrt(34434));
-        System.out.println(countNoDoubleLetterWords(3,""));
-        System.out.println(countNoDoubleLetterWords(2,""));
-        System.out.println(countNoDoubleLetterWords(1,""));
+        // System.out.println(reverse("racecar"));
+        // System.out.println(reverse("KONSTANTINOVICH"));
+        // System.out.println(sqrt(35));
+        // System.out.println(sqrt(34434));
+        // System.out.println(countNoDoubleLetterWords(3,""));
+        // System.out.println(countNoDoubleLetterWords(2,""));
+        // System.out.println(countNoDoubleLetterWords(10,""));
+      
+
+
+
 
 
 
