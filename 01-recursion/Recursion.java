@@ -140,6 +140,9 @@ public class Recursion {
         System.out.println(sqrt(35));
         System.out.println(sqrt(34434));
         System.out.println(countNoDoubleLetterWords(3,""));
+        System.out.println(countNoDoubleLetterWords(2,""));
+        System.out.println(countNoDoubleLetterWords(1,""));
+
 
 
 
