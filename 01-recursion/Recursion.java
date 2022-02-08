@@ -158,7 +158,18 @@ public class Recursion {
         // System.out.println(countNoDoubleLetterWords(3,""));
         // System.out.println(countNoDoubleLetterWords(2,""));
         // System.out.println(countNoDoubleLetterWords(10,""));
-      
+        System.out.println(fibIter(0,1,0));
+        System.out.println(fibIter(1,1,0));
+        System.out.println(fibIter(2,1,0));
+        System.out.println(fibIter(3,1,0));
+        System.out.println(fibIter(4,1,0));
+        System.out.println(fibIter(5,1,0));
+        System.out.println(fibIter(6,1,0));
+        System.out.println(fibIter(7,1,0));
+        System.out.println(fibIter(8,1,0));
+        System.out.println(fibIter(9,1,0));
+        System.out.println(fibIter(10,1,0));
+        System.out.println(fibIter(11,1,0));
 
 
 
