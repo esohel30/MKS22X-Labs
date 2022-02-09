@@ -87,9 +87,7 @@ public class Recursion {
     }
 
     public static double sqrt(double n, double guess) {
-        if (n == 0) {
-            return n;
-        }
+
         if (Math.abs(guess * guess - n) <= 0.00001 * n) {
             return guess;
         } else {
@@ -150,12 +148,12 @@ public class Recursion {
 
 
     public static void main(String[] args) {
-        System.out.println(sqrt(12));
-        System.out.println(sqrt(123));
-        System.out.println(sqrt(23));
-        System.out.println(sqrt(121));
-        System.out.println(sqrt(2323));
-        System.out.println(sqrt(112));
+        System.out.println(sqrt(1));
+        System.out.println(sqrt(0));
+        System.out.println(sqrt(64));
+        System.out.println(sqrt(9801));
+
+
 
     }
 
