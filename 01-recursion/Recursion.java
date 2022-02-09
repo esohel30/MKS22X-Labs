@@ -87,6 +87,9 @@ public class Recursion {
     }
 
     public static double sqrt(double n, double guess) {
+        if (n == 0) {
+            return n;
+        }
         if (Math.abs(guess * guess - n) <= 0.00001 * n) {
             return guess;
         } else {
@@ -96,86 +99,63 @@ public class Recursion {
 
 
     /*
-    *@param length how long the words must be
-    *param word the variable to store the partial solution (should start at "")
-    *@return the number of words that have no adjacent matching letters using the letters a-z.
-    *Repetition allowed except when letters are adjacent.
-    */
+     *@param length how long the words must be
+     *param word the variable to store the partial solution (should start at "")
+     *@return the number of words that have no adjacent matching letters using the letters a-z.
+     *Repetition allowed except when letters are adjacent.
+     */
     public static long countNoDoubleLetterWords(int length, String word) {
-    //Hint: not a wrapper method, but you must call it starting with "" as your word.
-    long sum = 0;
+        //Hint: not a wrapper method, but you must call it starting with "" as your word.
+        long sum = 0;
 
-    if (length == 0) {
-        boolean duplicate = false;
-        for (int i = 0; i < word.length() - 1; i++) {
-            if (word.charAt(i) == word.charAt(i + 1)) {
-                duplicate = true;
+        if (length == 0) {
+            boolean duplicate = false;
+            for (int i = 0; i < word.length() - 1; i++) {
+                if (word.charAt(i) == word.charAt(i + 1)) {
+                    duplicate = true;
+                }
+            }
+            if (duplicate == false) {
+                return 1;
+            }
+
+        } else {
+
+            for (char a = 'a'; a <= 'z'; a++) {
+                sum += (countNoDoubleLetterWords(length - 1, word + a));
             }
         }
-        if (duplicate == false) {
-            return 1;
-        }
 
-    } else {
-
-        for (char a = 'a'; a <= 'z'; a++) {
-            sum += (countNoDoubleLetterWords(length - 1, word + a));
-        }
+        return sum;
     }
 
-    return sum;
-}
+    /*
+     *@param n any non-negative value
+     *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
+     */
+    public static int fibIter(int n, int f1, int f2) {
+        //DO NOT call fibIter more than once
 
-/*
-            *@param n any non-negative value
-            *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
-            */
-            public static int fibIter(int n, int f1, int f2){
-              //DO NOT call fibIter more than once
+        if (n == 0) {
+            return f2;
+        }
+        if (n == 1) {
+            return f1;
 
-              if (n == 0){
-              return f2;
-              }
-              if (n == 1){
-              return f1;
-
-              }else{
-              return fibIter(n - 1, f1 + f2, f1);
-            }
-          }
-
-
-
-
+        } else {
+            return fibIter(n - 1, f1 + f2, f1);
+        }
+    }
 
 
 
     public static void main(String[] args) {
-        // System.out.println(reverse("racecar"));
-        // System.out.println(reverse("KONSTANTINOVICH"));
-        // System.out.println(sqrt(35));
-        // System.out.println(sqrt(34434));
-        // System.out.println(countNoDoubleLetterWords(3,""));
-        // System.out.println(countNoDoubleLetterWords(2,""));
-        // System.out.println(countNoDoubleLetterWords(10,""));
-        System.out.println(fibIter(0,1,0));
-        System.out.println(fibIter(1,1,0));
-        System.out.println(fibIter(2,1,0));
-        System.out.println(fibIter(3,1,0));
-        System.out.println(fibIter(4,1,0));
-        System.out.println(fibIter(5,1,0));
-        System.out.println(fibIter(6,1,0));
-        System.out.println(fibIter(7,1,0));
-        System.out.println(fibIter(8,1,0));
-        System.out.println(fibIter(9,1,0));
-        System.out.println(fibIter(10,1,0));
-        System.out.println(fibIter(11,1,0));
-
-
-
-
-
-
+        System.out.println(sqrt(12));
+        System.out.println(sqrt(123));
+        System.out.println(sqrt(23));
+        System.out.println(sqrt(121));
+        System.out.println(sqrt(2323));
+        System.out.println(sqrt(112));
 
     }
 
