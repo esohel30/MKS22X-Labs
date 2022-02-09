@@ -88,6 +88,10 @@ public class Recursion {
 
     public static double sqrt(double n, double guess) {
 
+        if(n == 0){
+          return 0;
+        }
+
         if (Math.abs(guess * guess - n) <= 0.00001 * n) {
             return guess;
         } else {
