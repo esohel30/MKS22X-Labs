@@ -91,19 +91,17 @@ public class codingbat {
     }
 
     public static boolean groupSumClump(int start, int[] nums, int target) {
-      int tempor = start;
       int total = 0;
-
-      if (target < 0 || start == nums.length) {
-          return target == 0;
-      }
+      int tempor = start;
 
       while(tempor < nums.length && nums[start] == nums[tempor]){
-       total += nums[temp];
+       total += nums[tempor];
        tempor++;
-     }
+      }  
 
-     else{
+     if (target < 0 || start == nums.length) {
+         return target == 0;
+     } else{
      return (groupSumClump(tempor, nums, target) || groupSumClump(tempor, nums, target - total));
     }
   }
