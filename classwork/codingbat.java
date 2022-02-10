@@ -16,6 +16,7 @@ public class codingbat{
   }
 
   public static boolean splitArray(int[] nums) {
+    return part(nums, 0, 0, 0);
   }
 
     public static boolean part(int[] nums, int index, int a, int b ){
