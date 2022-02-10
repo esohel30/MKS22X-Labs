@@ -90,21 +90,23 @@ public class codingbat {
       }
     }
 
-    public boolean groupSumClump(int start, int[] nums, int target) {
-      int temp = start;
+    public static boolean groupSumClump(int start, int[] nums, int target) {
+      int tempor = start;
       int total = 0;
 
-      if(start >= nums.length){
-        return target == 0;
+      if (target < 0 || start == nums.length) {
+          return target == 0;
       }
 
-      while(temp < nums.length && nums[start] == nums[temp]){
+      while(tempor < nums.length && nums[start] == nums[tempor]){
        total += nums[temp];
-       temp++;
+       tempor++;
      }
 
-     return (groupSumClump(temp, nums, target) || groupSumClump(temp, nums, target - total));
+     else{
+     return (groupSumClump(tempor, nums, target) || groupSumClump(tempor, nums, target - total));
     }
+  }
 
 
 
@@ -140,6 +142,11 @@ public class codingbat {
           // System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 19));
           // System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 17));
           // System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 12));
+          System.out.println(groupSumClump(0, new int[] {2, 4, 8}, 10));
+          System.out.println(groupSumClump(0, new int[] {1, 2, 4, 8, 1}, 10));
+          System.out.println(groupSumClump(0, new int[] {2, 2, 2,2,2,2,2,2,2,2,2,2}, 22));
+          System.out.println(groupSumClump(0, new int[] {2, 4, 8}, 112));
+
 
 
 
