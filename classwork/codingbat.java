@@ -27,7 +27,7 @@ public class codingbat{
 
     public static boolean groupSum6(int start, int[] nums, int target){
 
-      if(start == nums.length){
+      if(start == nums.length || target < 0){
         return target ==  0;
       }
 
