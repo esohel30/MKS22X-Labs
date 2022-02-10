@@ -101,10 +101,9 @@ public class codingbat {
       while(temp < nums.length && nums[start] == nums[temp]){
        total += nums[temp];
        temp++;
-      }
+     }
 
-
-
+     return (groupSumClump(temp, nums, target) || groupSumClump(temp, nums, target - total));
     }
 
 
