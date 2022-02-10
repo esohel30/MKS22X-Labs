@@ -76,7 +76,7 @@ public class codingbat {
     }
 
 
-    public boolean groupSum5(int start, int[] nums, int target) {
+    public static boolean groupSum5(int start, int[] nums, int target) {
       if (target == 0) {
           return true;
       }
@@ -84,14 +84,14 @@ public class codingbat {
           return false;
       }
       if(nums[start] % 5 == 0){
-         return groupSum(start + 1, nums, target - nums[start]);
+         return groupSum5(start + 1, nums, target - nums[start]);
       }
       if(nums[start] == 1 && nums[start -1] % 5 == 0){
-        return groupSum(start + 1, nums, target);
+        return groupSum5(start + 1, nums, target);
 
       } else {
           //choose or dont choose
-          return (groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
+          return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
       }
     }
 
@@ -130,9 +130,13 @@ public class codingbat {
         // System.out.println(splitOdd10(new int[] { 5,5,6}));
         // System.out.println(splitOdd10(new int[] { 5,5,6,1}));
         // System.out.println(splitOdd10(new int[] { 6,5,5,1}));
-          System.out.println(split53(new int[]{1,1}));
-          System.out.println(split53(new int[]{1,1,1}));
-          System.out.println(split53(new int[]{2,4,2}));
+          // System.out.println(split53(new int[]{1,1}));
+          // System.out.println(split53(new int[]{1,1,1}));
+          // System.out.println(split53(new int[]{2,4,2}));
+          System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 19));
+          System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 17));
+          System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 12));
+
 
 
 
