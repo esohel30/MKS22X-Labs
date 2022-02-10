@@ -56,6 +56,33 @@ public class codingbat {
     }
 
 
+    public boolean split53(int[] nums) {
+      return partSplit(nums, 0, 0, 0);
+    }
+
+    public static boolean partSplit(int[] nums, int index, int a, int b) {
+        if (nums.length == index) {
+            return a == b;
+          }
+
+        if(nums[index] % 5 == 0){
+          return splitPart(nums, index + 1, a + nums[index], b);
+        }
+        if(nums[index] % 3 == 0 && nums[index] % 5 != 0){
+          return splitPart(nums, index + 1, a, b + nums[index]);
+
+        } else {
+            return (splitPart(nums, index + 1, a + nums[index], b) || splitPart(nums, index + 1, a, b + nums[index]));
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
