@@ -22,7 +22,9 @@ public class codingbat{
       if(nums.length  == index){
         return a == b;
 
-        
+        }else{
+        return ( part(nums, index + 1, a + nums[index], b) || part(nums, index + 1, a, b + nums[index]) );
+      }
 
     }
 
