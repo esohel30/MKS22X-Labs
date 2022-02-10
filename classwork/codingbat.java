@@ -15,6 +15,7 @@ public class codingbat {
     public static boolean splitArray(int[] nums) {
         return part(nums, 0, 0, 0);
     }
+    //helper function
     public static boolean part(int[] nums, int index, int a, int b) {
         if (nums.length == index) {
             return a == b;
@@ -34,12 +35,20 @@ public class codingbat {
         }
     }
 
-    public static boolean groupNoAdj(int start, int[] nums, int target) {
+    public static boolean groupNoAdj(int start, int[] nums, int target){
       if(target == 0) return true;
       if(start >= nums.length || target < 0) return false;
       else{
         return (groupNoAdj(start + 2, nums, target - nums[start]) ||  groupNoAdj(start + 1, nums, target) );
       }
+    }
+
+    public static boolean splitOdd10(int[] nums) {
+
+    }
+
+    public static boolean splitPart(int[] nums, int index, int a, int b) {
+        
     }
 
 
