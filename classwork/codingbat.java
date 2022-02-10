@@ -26,13 +26,12 @@ public class codingbat{
     }
 
     public static boolean groupSum6(int start, int[] nums, int target){
-      if(target ==0){
-        return true;
+
+      if(start == nums.length){
+        return target ==  0;
       }
-      if(start == nums.length || target < 0){
-        return false;
-      }
-      if(nums[start] == 6){
+
+      if(nums[start] == 6 ){
         return groupSum6(start + 1, nums, target - 6);
       }
 
@@ -60,7 +59,8 @@ public class codingbat{
       System.out.println(groupSum6(0, new int[]{5,6,1}, 8));
       System.out.println(groupSum6(0, new int[]{1,2,6}, 3));
       System.out.println(groupSum6(0, new int[]{5,2,1}, 7));
-      System.out.println(groupSum6(0, new int[]{5,0,1}, 6));
+      System.out.println(groupSum6(0, new int[]{5,6,6}, 17));
+
 
 
 
