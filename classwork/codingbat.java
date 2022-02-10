@@ -77,16 +77,13 @@ public class codingbat {
 
 
     public static boolean groupSum5(int start, int[] nums, int target) {
-      if (target == 0) {
-          return true;
-      }
       if (start == nums.length || target < 0) {
-          return false;
+          return target == 0;
       }
       if(nums[start] % 5 == 0){
          return groupSum5(start + 1, nums, target - nums[start]);
       }
-      if(nums[start] == 1 && nums[start -1] % 5 == 0){
+      if(start > 0 && nums[start] == 1 && nums[start -1] % 5 == 0){
         return groupSum5(start + 1, nums, target);
 
       } else {
@@ -136,7 +133,7 @@ public class codingbat {
           System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 19));
           System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 17));
           System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 12));
-
+          System.out.println(10%5);
 
 
 
