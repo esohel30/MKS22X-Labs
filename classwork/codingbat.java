@@ -44,11 +44,15 @@ public class codingbat {
     }
 
     public static boolean splitOdd10(int[] nums) {
-
+      return splitPart(nums, 0, 0, 0);
     }
 
     public static boolean splitPart(int[] nums, int index, int a, int b) {
-        
+        if (nums.length == index) {
+            return ( (a%10 == 0) && (b%2 ==1) ) ;
+        } else {
+            return (splitPart(nums, index + 1, a + nums[index], b) || splitPart(nums, index + 1, a, b + nums[index]));
+        }
     }
 
 
