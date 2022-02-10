@@ -36,7 +36,9 @@ public class codingbat{
         return groupSum6(start + 1, nums, target - 6);
       }
 
-
+      else{
+        return (groupSum6(start + 1, nums, target - nums[start])  || groupSum(start + 1, nums, target) );
+      }
 
     }
 
@@ -55,7 +57,6 @@ public class codingbat{
       // System.out.println( splitArray(new int[] {0}));
       // System.out.println( splitArray(new int[] {1}));
       // System.out.println( splitArray(new int[] {}));
-  
 
 
 
