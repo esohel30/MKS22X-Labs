@@ -64,17 +64,40 @@ public class codingbat {
         if (nums.length == index) {
             return a == b;
           }
-
         if(nums[index] % 5 == 0){
-          return splitPart(nums, index + 1, a + nums[index], b);
+          return partSplit(nums, index + 1, a + nums[index], b);
         }
         if(nums[index] % 3 == 0 && nums[index] % 5 != 0){
-          return splitPart(nums, index + 1, a, b + nums[index]);
+          return partSplit(nums, index + 1, a, b + nums[index]);
 
         } else {
             return (partSplit(nums, index + 1, a + nums[index], b) || partSplit(nums, index + 1, a, b + nums[index]));
         }
     }
+
+
+    public boolean groupSum5(int start, int[] nums, int target) {
+      if (target == 0) {
+          return true;
+      }
+      if (start == nums.length || target < 0) {
+          return false;
+      }
+      if(nums[start] % 5 == 0){
+         return groupSum(start + 1, nums, target - nums[start]);
+      }
+      if(nums[start] == 1 && nums[start -1] % 5 == 0){
+        return groupSum(start + 1, nums, target);
+
+      } else {
+          //choose or dont choose
+          return (groupSum(start + 1, nums, target - nums[start]) || groupSum(start + 1, nums, target));
+      }
+    }
+
+
+
+
 
 
 
