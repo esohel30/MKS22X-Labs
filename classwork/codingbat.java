@@ -37,6 +37,18 @@ public class codingbat{
   public static void main(String[] args) {
       System.out.println( groupSum(1, new int[]{2,4,8} , 12) );
       System.out.println( splitArray(new int[] {1,2,3,5}));
+      System.out.println( splitArray(new int[] {1,3434,3,5}));
+      System.out.println( splitArray(new int[] {1,2,3344}));
+      System.out.println( splitArray(new int[] {1,2,3,4,5,6,7,8,9,10}));
+      System.out.println( splitArray(new int[] {1,2,3,4,5,6,7,8,9,10,11}));
+      System.out.println( splitArray(new int[] {0}));
+      System.out.println( splitArray(new int[] {1}));
+      System.out.println( splitArray(new int[] {}));
+
+
+
+
+
    }
 
 
