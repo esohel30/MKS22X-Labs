@@ -56,7 +56,7 @@ public class codingbat {
     }
 
 
-    public boolean split53(int[] nums) {
+    public static boolean split53(int[] nums) {
       return partSplit(nums, 0, 0, 0);
     }
 
@@ -103,10 +103,14 @@ public class codingbat {
         // System.out.println(groupNoAdj(0, new int[]{2,5,10,4}, 11));
         // System.out.println(groupNoAdj(0, new int[]{2,5,10,4}, 11));
         // System.out.println(groupNoAdj(0, new int[]{2,5,10,4}, 11));
-        System.out.println(splitOdd10(new int[] { 5,5,5}));
-        System.out.println(splitOdd10(new int[] { 5,5,6}));
-        System.out.println(splitOdd10(new int[] { 5,5,6,1}));
-        System.out.println(splitOdd10(new int[] { 6,5,5,1}));
+        // System.out.println(splitOdd10(new int[] { 5,5,5}));
+        // System.out.println(splitOdd10(new int[] { 5,5,6}));
+        // System.out.println(splitOdd10(new int[] { 5,5,6,1}));
+        // System.out.println(splitOdd10(new int[] { 6,5,5,1}));
+          System.out.println(split53(new int[]{1,1}));
+          System.out.println(split53(new int[]{1,1,1}));
+          System.out.println(split53(new int[]{2,4,2}));
+
 
 
 
