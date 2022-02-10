@@ -6,7 +6,7 @@ public class codingbat{
     if(target == 0){
       return true;
     }
-    if(start == nums.length){
+    if(start == nums.length || target < 0){
       return false;
 
     }else{
@@ -14,14 +14,16 @@ public class codingbat{
     }
   }
 
+  public static boolean splitArray(int[] nums) {
+
+
+  }
+
+
+
 
   public static void main(String[] args) {
-
       System.out.println( groupSum(1, new int[]{2,4,8} , 12) );
-      System.out.println( groupSum(0, new int[]{12,23,23,23,23,23,23} , 46) );
-      System.out.println( groupSum(1, new int[]{212,4,8} , 11) );
-      System.out.println( groupSum(1, new int[]{2,4,238} , 244) );
-      System.out.println( groupSum(1, new int[]{2,423,8} , 1112) );
 
    }
 
