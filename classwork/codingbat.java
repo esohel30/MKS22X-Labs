@@ -55,7 +55,6 @@ public class codingbat {
         }
     }
 
-
     public static boolean split53(int[] nums) {
       return partSplit(nums, 0, 0, 0);
     }
@@ -75,7 +74,6 @@ public class codingbat {
         }
     }
 
-
     public static boolean groupSum5(int start, int[] nums, int target) {
       if (start == nums.length || target < 0) {
           return target == 0;
@@ -92,12 +90,16 @@ public class codingbat {
       }
     }
 
+    public boolean groupSumClump(int start, int[] nums, int target) {
+      int temp = start;
+      int total = 0;
 
+      if(start >= nums.length){
+        return target == 0;
+    }
 
-
-
-
-
+    
+    }
 
 
 
@@ -130,10 +132,9 @@ public class codingbat {
           // System.out.println(split53(new int[]{1,1}));
           // System.out.println(split53(new int[]{1,1,1}));
           // System.out.println(split53(new int[]{2,4,2}));
-          System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 19));
-          System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 17));
-          System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 12));
-          System.out.println(10%5);
+          // System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 19));
+          // System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 17));
+          // System.out.println(groupSum5(0, new int[]{2, 5, 10, 4}, 12));
 
 
 
