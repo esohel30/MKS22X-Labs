@@ -35,39 +35,39 @@ public class codingbat {
         }
     }
 
-    public static boolean groupNoAdj(int start, int[] nums, int target){
-      if(target == 0) return true;
-      if(start >= nums.length || target < 0) return false;
-      else{
-        return (groupNoAdj(start + 2, nums, target - nums[start]) ||  groupNoAdj(start + 1, nums, target) );
-      }
+    public static boolean groupNoAdj(int start, int[] nums, int target) {
+        if (target == 0) return true;
+        if (start >= nums.length || target < 0) return false;
+        else {
+            return (groupNoAdj(start + 2, nums, target - nums[start]) || groupNoAdj(start + 1, nums, target));
+        }
     }
 
     public static boolean splitOdd10(int[] nums) {
-      return splitPart(nums, 0, 0, 0);
+        return splitPart(nums, 0, 0, 0);
     }
 
     public static boolean splitPart(int[] nums, int index, int a, int b) {
         if (nums.length == index) {
-            return ( (a%10 == 0) && (b%2 ==1) ) ;
+            return ((a % 10 == 0) && (b % 2 == 1));
         } else {
             return (splitPart(nums, index + 1, a + nums[index], b) || splitPart(nums, index + 1, a, b + nums[index]));
         }
     }
 
     public static boolean split53(int[] nums) {
-      return partSplit(nums, 0, 0, 0);
+        return partSplit(nums, 0, 0, 0);
     }
 
     public static boolean partSplit(int[] nums, int index, int a, int b) {
         if (nums.length == index) {
             return a == b;
-          }
-        if(nums[index] % 5 == 0){
-          return partSplit(nums, index + 1, a + nums[index], b);
         }
-        if(nums[index] % 3 == 0 && nums[index] % 5 != 0){
-          return partSplit(nums, index + 1, a, b + nums[index]);
+        if (nums[index] % 5 == 0) {
+            return partSplit(nums, index + 1, a + nums[index], b);
+        }
+        if (nums[index] % 3 == 0 && nums[index] % 5 != 0) {
+            return partSplit(nums, index + 1, a, b + nums[index]);
 
         } else {
             return (partSplit(nums, index + 1, a + nums[index], b) || partSplit(nums, index + 1, a, b + nums[index]));
@@ -75,42 +75,36 @@ public class codingbat {
     }
 
     public static boolean groupSum5(int start, int[] nums, int target) {
-      if (start == nums.length || target < 0) {
-          return target == 0;
-      }
-      if(nums[start] % 5 == 0){
-         return groupSum5(start + 1, nums, target - nums[start]);
-      }
-      if(start > 0 && nums[start] == 1 && nums[start -1] % 5 == 0){
-        return groupSum5(start + 1, nums, target);
+        if (start == nums.length || target < 0) {
+            return target == 0;
+        }
+        if (nums[start] % 5 == 0) {
+            return groupSum5(start + 1, nums, target - nums[start]);
+        }
+        if (start > 0 && nums[start] == 1 && nums[start - 1] % 5 == 0) {
+            return groupSum5(start + 1, nums, target);
 
-      } else {
-          //choose or dont choose
-          return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
-      }
+        } else {
+            //choose or dont choose
+            return (groupSum5(start + 1, nums, target - nums[start]) || groupSum5(start + 1, nums, target));
+        }
     }
 
     public static boolean groupSumClump(int start, int[] nums, int target) {
-      int total = 0;
-      int tempor = start;
+        int total = 0;
+        int tempor = start;
 
-      while(tempor < nums.length && nums[start] == nums[tempor]){
-       total += nums[tempor];
-       tempor++;
-      }  
+        while (tempor < nums.length && nums[start] == nums[tempor]) {
+            total += nums[tempor];
+            tempor++;
+        }
 
-     if (target < 0 || start == nums.length) {
-         return target == 0;
-     } else{
-     return (groupSumClump(tempor, nums, target) || groupSumClump(tempor, nums, target - total));
+        if (target < 0 || start == nums.length) {
+            return target == 0;
+        } else {
+            return (groupSumClump(tempor, nums, target) || groupSumClump(tempor, nums, target - total));
+        }
     }
-  }
-
-
-
-
-
-
 
 
     public static void main(String[] args) {
