@@ -61,6 +61,9 @@ public class codingbat {
         //  System.out.println(groupSum6(0, new int[]{5,2,1}, 7));
         //  System.out.println(groupSum6(0, new int[]{5,6,6}, 17));
         System.out.println(groupNoAdj(0, new int[]{2,5,10,4}, 11));
+        System.out.println(groupNoAdj(0, new int[]{2,5,10,4}, 11));
+        System.out.println(groupNoAdj(0, new int[]{2,5,10,4}, 11));
+
 
 
 
