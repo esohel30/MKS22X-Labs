@@ -30,14 +30,14 @@ public class codingbat{
         return true;
       }
       if(start == nums.length || target < 0){
-        return 0;
+        return false;
       }
-      if(nums[index] == 6){
+      if(nums[start] == 6){
         return groupSum6(start + 1, nums, target - 6);
       }
 
       else{
-        return (groupSum6(start + 1, nums, target - nums[start])  || groupSum(start + 1, nums, target) );
+        return (groupSum6(start + 1, nums, target - nums[start])  || groupSum6(start + 1, nums, target) );
       }
 
     }
@@ -57,6 +57,11 @@ public class codingbat{
       // System.out.println( splitArray(new int[] {0}));
       // System.out.println( splitArray(new int[] {1}));
       // System.out.println( splitArray(new int[] {}));
+      System.out.println(groupSum6(0, new int[]{5,6,1}, 8));
+      System.out.println(groupSum6(0, new int[]{1,2,6}, 3));
+      System.out.println(groupSum6(0, new int[]{5,2,1}, 7));
+      System.out.println(groupSum6(0, new int[]{5,0,1}, 6));
+
 
 
 
