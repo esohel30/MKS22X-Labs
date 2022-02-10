@@ -72,7 +72,7 @@ public class codingbat {
           return splitPart(nums, index + 1, a, b + nums[index]);
 
         } else {
-            return (splitPart(nums, index + 1, a + nums[index], b) || splitPart(nums, index + 1, a, b + nums[index]));
+            return (partSplit(nums, index + 1, a + nums[index], b) || partSplit(nums, index + 1, a, b + nums[index]));
         }
     }
 
