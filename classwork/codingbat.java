@@ -96,9 +96,15 @@ public class codingbat {
 
       if(start >= nums.length){
         return target == 0;
-    }
+      }
 
-    
+      while(temp < nums.length && nums[start] == nums[temp]){
+       total += nums[temp];
+       temp++;
+      }
+
+
+
     }
 
 
