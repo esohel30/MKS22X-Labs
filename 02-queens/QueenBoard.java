@@ -49,7 +49,10 @@ public class QueenBoard {
      * in which case the queen is added and all it's threatened positions are incremented
      */
     private boolean addQueen(int r, int c) {
-        return true;
+      if(board[r][c] == 0){
+        board[r][c] =1;
+
+      }
     }
 
     /**Remove the queen that was added to r,c
