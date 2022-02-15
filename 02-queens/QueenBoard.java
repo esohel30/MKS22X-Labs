@@ -87,6 +87,9 @@ public class QueenBoard {
               (a < board.length - r) && (a < board[0].length - c); a++) {
               board[r + a][c + a] -= 1;
           }
+          for(int b = 1; (c - b > -1)  && (r + b < board.length); b++){
+            board[r + b][c - b] -= 1;
+          }
       }
 
 
@@ -118,8 +121,8 @@ public class QueenBoard {
         QueenBoard t5 = new QueenBoard(20, 20);
         t5.addQueen(3, 9);
         t5.addQueen(3, 19);
-        t5.addQueen(10, 0);
-        t5.addQueen(19, 19);
+        t5.removeQueen(3,19);
+        t5.removeQueen(3,9);
 
 
         System.out.println(t5);
