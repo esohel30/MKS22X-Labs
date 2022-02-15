@@ -36,8 +36,8 @@ public class QueenBoard {
                 if (board[i][j] == -1) {
                     temp += "Q ";
                 }
-                if(board[i][j] >= 1){
-                  temp += "X ";
+                if (board[i][j] >= 1) {
+                    temp += "X ";
                 }
             }
             temp += "\n";
@@ -52,28 +52,21 @@ public class QueenBoard {
      * in which case the queen is added and all it's threatened positions are incremented
      */
     private boolean addQueen(int r, int c) {
-      int max = r;
-      if( c > r){
-        max = c;
-      }
+        if (board[r][c] == 0) {
+            board[r][c] = -1;
 
-      if(board[r][c] == 0){
-         board[r][c] = -1;
+            for (int i = r + 1; i < board.length; i++) {
+                board[i][c] += 1;
+            }
 
-         for(int i = 1; c + i < board[0].length; i++){
-           board[r][c + i] += 1;
-         }
-         for(int s = 1; r + s < board.length; s++){
-           board[r + s][c] += 1;
-         }
-         for(int f = 1; max + f< board.length && max + f < board[0].length; f++){
-           board[r + f][c + f] += 1;
-         }
-
-       }
-       return false;
-
-  }
+            for (int a = 1;
+                (a < board.length - r) && (a < board[0].length - c); a++) {
+                board[r + a][c + a] += 1;
+            }
+            return true;
+        }
+        return false;
+    }
 
     /**Remove the queen that was added to r,c
      *@precondition r and c are valid indices of the board array and there is a queen at position r,c
@@ -107,29 +100,9 @@ public class QueenBoard {
 
 
     public static void main(String[] args) {
-        QueenBoard t1 = new QueenBoard(10, 10);
-        t1.addQueen(0,0);
-        System.out.println(t1);
-
-        QueenBoard t2 = new QueenBoard(5, 10);
-        t2.addQueen(0,0);
-        System.out.println(t2);
-
-        QueenBoard t3 = new QueenBoard(10, 5);
-        t3.addQueen(0,0);
-        System.out.println(t1);
-
-        QueenBoard t4 = new QueenBoard(4, 4);
-        t4.addQueen(0,0);
-        System.out.println(t4);
 
         QueenBoard t5 = new QueenBoard(10, 7);
-        t5.addQueen(2,5);
+        t5.addQueen(9, 6);
         System.out.println(t5);
-
-
-
     }
-
-
 }
