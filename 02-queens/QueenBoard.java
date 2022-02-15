@@ -52,6 +52,7 @@ public class QueenBoard {
      * in which case the queen is added and all it's threatened positions are incremented
      */
     private boolean addQueen(int r, int c) {
+
         if (board[r][c] == 0) {
             board[r][c] = -1;
 
@@ -62,6 +63,10 @@ public class QueenBoard {
             for (int a = 1;
                 (a < board.length - r) && (a < board[0].length - c); a++) {
                 board[r + a][c + a] += 1;
+            }
+
+            for(int b = 1; (c - b > -1)  && (r + b < board.length); b++){
+              board[r + b][c - b] += 1;
             }
             return true;
         }
@@ -74,8 +79,17 @@ public class QueenBoard {
      *threatened positions are decremented
      */
     private void removeQueen(int r, int c) {
+          board[r][c] = 0;
+          for (int i = r + 1; i < board.length; i++) {
+              board[i][c] -= 1;
+          }
+          for (int a = 1;
+              (a < board.length - r) && (a < board[0].length - c); a++) {
+              board[r + a][c + a] -= 1;
+          }
+      }
 
-    }
+
 
     /**Find the first solution configuration possible for this size board. Start by placing
      *  the 1st queen in the top left corner, and each new queen in the next ROW. When backtracking
@@ -101,8 +115,17 @@ public class QueenBoard {
 
     public static void main(String[] args) {
 
-        QueenBoard t5 = new QueenBoard(10, 7);
-        t5.addQueen(9, 6);
+        QueenBoard t5 = new QueenBoard(20, 20);
+        t5.addQueen(3, 9);
+        t5.addQueen(3, 19);
+        t5.addQueen(10, 0);
+        t5.addQueen(19, 19);
+
+
         System.out.println(t5);
+
+
+
+
     }
 }
