@@ -26,17 +26,12 @@ public class QueenBoard {
         String temp = "";
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j] == 0) {
+                if (board[i][j] > -1) {
                     temp += "_ ";
                 }
                 if (board[i][j] == -1) {
                     temp += "Q ";
                 }
-                if (board[i][j] > 0) {
-                    temp += "X ";
-                }
-
-
             }
             temp += "\n";
         }
@@ -61,8 +56,9 @@ public class QueenBoard {
                 (a < board.length - r) && (a < board[0].length - c); a++) {
                 board[r + a][c + a] += 1;
             }
-            for(int b = 1; (c - b > -1)  && (r + b < board.length); b++){
-              board[r + b][c - b] += 1;
+            for (int b = 1;
+                (c - b > -1) && (r + b < board.length); b++) {
+                board[r + b][c - b] += 1;
             }
             return true;
         }
@@ -75,18 +71,19 @@ public class QueenBoard {
      *threatened positions are decremented
      */
     private void removeQueen(int r, int c) {
-          board[r][c] = 0;
-          for (int i = r + 1; i < board.length; i++) {
-              board[i][c] -= 1;
-          }
-          for (int a = 1;
-              (a < board.length - r) && (a < board[0].length - c); a++) {
-              board[r + a][c + a] -= 1;
-          }
-          for(int b = 1; (c - b > -1)  && (r + b < board.length); b++){
+        board[r][c] = 0;
+        for (int i = r + 1; i < board.length; i++) {
+            board[i][c] -= 1;
+        }
+        for (int a = 1;
+            (a < board.length - r) && (a < board[0].length - c); a++) {
+            board[r + a][c + a] -= 1;
+        }
+        for (int b = 1;
+            (c - b > -1) && (r + b < board.length); b++) {
             board[r + b][c - b] -= 1;
-          }
-      }
+        }
+    }
 
 
 
@@ -100,24 +97,24 @@ public class QueenBoard {
      *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
      */
     public boolean solve() {
-      return solve(0);
+        return solve(0);
     }
 
     public boolean solve(int row) {
-      if(row == board.length){
-        return true;
-      }
-      else{
-
-      for(int i = 0; i < board[0].length; i++){
-        if(board[row][i] == 0){
-          addQueen(row, i);
-          return solve(row + 1);
+        if (row > board.length - 1) {
+            return true;
+        } else {
+            for (int col = 0; col < board[0].length; col++) {
+                if (addQueen(row, col)) {
+                    if(solve(row + 1)) {
+                        return true;
+                    }
+                    removeQueen(row, col);
+                }
+            }
+            return false;
         }
-      }
-      return false;
     }
-  }
 
     /**Find all possible solutions to this size board.
      *@return the number of solutions found, and leaves the board filled with only 0's
@@ -129,7 +126,7 @@ public class QueenBoard {
 
 
     public static void main(String[] args) {
-        QueenBoard t5 = new QueenBoard(6, 6);
+        QueenBoard t5 = new QueenBoard(7, 7 );
         t5.solve();
         System.out.println(t5);
 
