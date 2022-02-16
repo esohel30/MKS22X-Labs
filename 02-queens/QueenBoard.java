@@ -1,9 +1,5 @@
-import java.util.*;
-import java.io.*;
-
 public class QueenBoard {
     private int[][] board;
-
 
     public QueenBoard(int row, int col) {
         this.board = new int[row][col];
@@ -36,9 +32,11 @@ public class QueenBoard {
                 if (board[i][j] == -1) {
                     temp += "Q ";
                 }
-                if (board[i][j] >= 1) {
+                if (board[i][j] > 0) {
                     temp += "X ";
                 }
+
+
             }
             temp += "\n";
         }
@@ -59,12 +57,10 @@ public class QueenBoard {
             for (int i = r + 1; i < board.length; i++) {
                 board[i][c] += 1;
             }
-
             for (int a = 1;
                 (a < board.length - r) && (a < board[0].length - c); a++) {
                 board[r + a][c + a] += 1;
             }
-
             for(int b = 1; (c - b > -1)  && (r + b < board.length); b++){
               board[r + b][c - b] += 1;
             }
@@ -104,8 +100,24 @@ public class QueenBoard {
      *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
      */
     public boolean solve() {
-        return true;
+      return solve(0);
     }
+
+    public boolean solve(int row) {
+      if(row == board.length){
+        return true;
+      }
+      else{
+
+      for(int i = 0; i < board[0].length; i++){
+        if(board[row][i] == 0){
+          addQueen(row, i);
+          return solve(row + 1);
+        }
+      }
+      return false;
+    }
+  }
 
     /**Find all possible solutions to this size board.
      *@return the number of solutions found, and leaves the board filled with only 0's
@@ -117,14 +129,8 @@ public class QueenBoard {
 
 
     public static void main(String[] args) {
-
-        QueenBoard t5 = new QueenBoard(20, 20);
-        t5.addQueen(3, 9);
-        t5.addQueen(3, 19);
-        t5.removeQueen(3,19);
-        t5.removeQueen(3,9);
-
-
+        QueenBoard t5 = new QueenBoard(6, 6);
+        t5.solve();
         System.out.println(t5);
 
 
