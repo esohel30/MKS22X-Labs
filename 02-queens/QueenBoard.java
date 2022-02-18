@@ -12,7 +12,6 @@ public class QueenBoard {
         }
     }
 
-    
     /**
      *@return The output string formatted as follows:
      *All numbers that represent queens are replaced with 'Q'
@@ -157,7 +156,16 @@ public class QueenBoard {
 
 
 
-
+    public int countSolutions() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] != 0) {
+                    throw new IllegalStateException("board is not in correct state");
+                }
+            }
+        }
+        return countSolutions(0);
+    }
 
     public static void main(String[] args) {
         QueenBoard t5 = new QueenBoard();
