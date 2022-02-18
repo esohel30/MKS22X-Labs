@@ -1,26 +1,24 @@
 public class QueenBoard {
+
     private int[][] board;
     private boolean animated;
     private int delay;
 
     public QueenBoard(int row) {
         this.board = new int[row][row];
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = 0;
-            }
-        }
+        setAnimate(false);
     }
 
-    public QueenBoard() {
+    public QueenBoard(int row, int delay) {
+        this.board = new int[row][row];
+        setAnimate(true);
+        setDelay(delay);
+    }
+
+    public QueenBoard(){
         this.board = new int[8][8];
         setAnimate(false);
         setDelay(1000);
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = 0;
-            }
-        }
     }
 
     public void setAnimate(boolean newValue) {
@@ -30,6 +28,7 @@ public class QueenBoard {
     public void setDelay(int newValue) {
         this.delay = newValue;
     }
+
     /**
      *@return The output string formatted as follows:
      *All numbers that represent queens are replaced with 'Q'
@@ -119,7 +118,7 @@ public class QueenBoard {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] != 0) {
-                    throw new IllegalStateException("board is not in correct state");
+                    throw new IllegalStateException("board is not in the correct state");
                 }
             }
         }
@@ -172,13 +171,11 @@ public class QueenBoard {
         }
     }
 
-
-
     public int countSolutions() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] != 0) {
-                    throw new IllegalStateException("board is not in correct state");
+                    throw new IllegalStateException("board is not in the correct state");
                 }
             }
         }
@@ -186,11 +183,22 @@ public class QueenBoard {
     }
 
     public static void main(String[] args) {
-        QueenBoard t5 = new QueenBoard();
-        t5.solve();
-
-
-
+      int SIZE = 8;
+      if(args.length > 0){
+        SIZE = Integer.parseInt(args[0]);
+      }
+      QueenBoard b = new QueenBoard(SIZE);
+      if(args.length > 1){
+        b.setAnimate(true);
+        b.setDelay(Integer.parseInt(args[1]));
+      }
+      System.out.println(Text.CLEAR_SCREEN);
+      System.out.println(Text.HIDE_CURSOR);
+      System.out.println(Text.go(1,1));
+      b.solve();
+      System.out.println(Text.RESET);
+      System.out.println(Text.go(1,1));
+      System.out.println(b);
 
     }
 }
