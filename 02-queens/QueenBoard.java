@@ -1,8 +1,10 @@
 public class QueenBoard {
     private int[][] board;
+    private boolean animated;
+    private int delay;
 
-    public QueenBoard(int row, int col) {
-        this.board = new int[row][col];
+    public QueenBoard(int row) {
+        this.board = new int[row][row];
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = 0;
@@ -10,7 +12,7 @@ public class QueenBoard {
         }
     }
 
-
+    
     /**
      *@return The output string formatted as follows:
      *All numbers that represent queens are replaced with 'Q'
@@ -97,6 +99,13 @@ public class QueenBoard {
      *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
      */
     public boolean solve() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] != 0) {
+                    throw new IllegalStateException("board is not in correct state");
+                }
+            }
+        }
         return solve(0);
     }
 
@@ -106,10 +115,20 @@ public class QueenBoard {
         } else {
             for (int col = 0; col < board[0].length; col++) {
                 if (addQueen(row, col)) {
-                    if(solve(row + 1)) {
+                    if (animated) {
+                        System.out.println(Text.go(1, 1));
+                        System.out.println(this); //can modify here
+                        Text.wait(delay);
+                    }
+                    if (solve(row + 1)) {
                         return true;
                     }
                     removeQueen(row, col);
+                    if (animated) {
+                        System.out.println(Text.go(1, 1));
+                        System.out.println(this); //can modify here
+                        Text.wait(delay);
+                    }
                 }
             }
             return false;
@@ -120,15 +139,29 @@ public class QueenBoard {
      *@return the number of solutions found, and leaves the board filled with only 0's
      *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
      */
-    public int countSolutions() {
-        return 1;
+    public int countSolutions(int row) {
+        if (row > board.length - 1) {
+            return 1;
+        } else {
+            int counter = 0;
+
+            for (int col = 0; col < board[0].length; col++) {
+                if (addQueen(row, col)) {
+                    counter += countSolutions(row + 1);
+                    removeQueen(row, col);
+                }
+            }
+            return counter;
+        }
     }
 
 
+
+
+
     public static void main(String[] args) {
-        QueenBoard t5 = new QueenBoard(7, 7 );
+        QueenBoard t5 = new QueenBoard();
         t5.solve();
-        System.out.println(t5);
 
 
 
