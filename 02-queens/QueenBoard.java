@@ -12,6 +12,24 @@ public class QueenBoard {
         }
     }
 
+    public QueenBoard() {
+        this.board = new int[8][8];
+        setAnimate(false);
+        setDelay(1000);
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = 0;
+            }
+        }
+    }
+
+    public void setAnimate(boolean newValue) {
+        this.animated = newValue;
+    }
+
+    public void setDelay(int newValue) {
+        this.delay = newValue;
+    }
     /**
      *@return The output string formatted as follows:
      *All numbers that represent queens are replaced with 'Q'
