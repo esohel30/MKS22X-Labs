@@ -15,7 +15,7 @@ public class QueenBoard {
         setDelay(delay);
     }
 
-    public QueenBoard(){
+    public QueenBoard() {
         this.board = new int[8][8];
         setAnimate(false);
         setDelay(1000);
@@ -133,7 +133,7 @@ public class QueenBoard {
                 if (addQueen(row, col)) {
                     if (animated) {
                         System.out.println(Text.go(1, 1));
-                        System.out.println(this); //can modify here
+                        System.out.println(this);  
                         Text.wait(delay);
                     }
                     if (solve(row + 1)) {
@@ -142,7 +142,7 @@ public class QueenBoard {
                     removeQueen(row, col);
                     if (animated) {
                         System.out.println(Text.go(1, 1));
-                        System.out.println(this); //can modify here
+                        System.out.println(this);
                         Text.wait(delay);
                     }
                 }
@@ -183,22 +183,22 @@ public class QueenBoard {
     }
 
     public static void main(String[] args) {
-      int SIZE = 8;
-      if(args.length > 0){
-        SIZE = Integer.parseInt(args[0]);
-      }
-      QueenBoard b = new QueenBoard(SIZE);
-      if(args.length > 1){
-        b.setAnimate(true);
-        b.setDelay(Integer.parseInt(args[1]));
-      }
-      System.out.println(Text.CLEAR_SCREEN);
-      System.out.println(Text.HIDE_CURSOR);
-      System.out.println(Text.go(1,1));
-      b.solve();
-      System.out.println(Text.RESET);
-      System.out.println(Text.go(1,1));
-      System.out.println(b);
+        int SIZE = 8;
+        if (args.length > 0) {
+            SIZE = Integer.parseInt(args[0]);
+        }
+        QueenBoard b = new QueenBoard(SIZE);
+        if (args.length > 1) {
+            b.setAnimate(true);
+            b.setDelay(Integer.parseInt(args[1]));
+        }
+        System.out.println(Text.CLEAR_SCREEN);
+        System.out.println(Text.HIDE_CURSOR);
+        System.out.println(Text.go(1, 1));
+        b.solve();
+        System.out.println(Text.RESET);
+        System.out.println(Text.go(1, 1));
+        System.out.println(b);
 
     }
 }
