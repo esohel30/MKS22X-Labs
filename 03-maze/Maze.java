@@ -22,7 +22,7 @@ public class Maze {
     Make sure your file reading is able to handle this.
     */
     public Maze(String filename) throws FileNotFoundException {
-        //COMPLETE CONSTRUCTOR
+        maze = getValuesFromFile(filename);
     }
 
     private void wait(int millis) {
