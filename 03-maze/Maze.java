@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Maze {
-    private char[][] maze;
+    private char[][] maze = new char[0][0];
     private boolean animate; //false by default
     private int startRow, startCol;
 
@@ -22,7 +22,9 @@ public class Maze {
     Make sure your file reading is able to handle this.
     */
     public Maze(String filename) throws FileNotFoundException {
-        maze = getValuesFromFile(filename);
+         this.maze = ReadFile.getValuesFromFile(filename);
+         setAnimate(false);
+
     }
 
     private void wait(int millis) {
@@ -48,7 +50,15 @@ public class Maze {
     It should look like the text file with some characters replaced.
     */
     public String toString() {
-        return "WRITE THIS METHOD";
+        String temp = "";
+        for(int i =0; i < maze.length; i ++){
+          for(int j =0; j < maze[i].length; j++){
+              temp += (maze[i][j]);
+          }
+          temp += ("\n");
+        }
+
+        return temp;
     }
 
     /*Wrapper Solve Function returns the helper function
@@ -87,7 +97,20 @@ public class Maze {
             wait(50);
         }
 
+
+
         //COMPLETE SOLVE
         return -1; //so it compiles
+    }
+
+
+    public static void main(String[] args) {
+      try {
+        Maze x = new Maze("maze3");
+        System.out.print(x);
+      }
+      catch(FileNotFoundException e){
+        System.out.print(e);
+      }
     }
 }

@@ -28,6 +28,7 @@ public class ReadFile {
         char[][] nums = new char[0][0];
         try {
             nums = getValuesFromFile("maze3");
+            
         } catch (FileNotFoundException e) {
             System.out.print(e);
         }
