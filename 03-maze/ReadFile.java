@@ -1,28 +1,43 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.util.ArrayList; // import the ArrayList class
 
 public class ReadFile {
-    public static int[] getValuesFromFile(String filename) throws FileNotFoundException {
+    public static String[][] getValuesFromFile(String filename) throws FileNotFoundException {
         String info = "" ;
         File text = new File(filename);
         Scanner input = new Scanner(text);
+        ArrayList<String> values = new ArrayList<String>();
 
         while(input.hasNextLine()){
           String temp = input.nextLine();
           info += temp + "\n";
+          values.add(temp);
+        }
+        System.out.println(info);
+        String[][] holder = new String[values.size()][values.get(0).length()];
+
+        for(int a =0; a < holder.length; a++){
+          for(int b = 0; b < holder[a].length; b++){
+              holder[a][b] = values.get(a).substring(b,b+1);
+          }
         }
 
-        System.out.println(info);
-        return new int[0];
+        for(int a =0; a < holder.length; a++){
+          for(int b = 0; b < holder[a].length; b++){
+            System.out.print(holder[a][b]);
+          }
+          System.out.print("\n");
+        }
 
+        return holder;
     }
 
     public static void main(String args[]) {
-        int[] nums = new int[0];
+        String[][] nums = new String[0][0];
         try {
-            nums = getValuesFromFile("");
+            nums = getValuesFromFile("maze3");
         } catch (FileNotFoundException e) {
             System.out.print(e);
         }
