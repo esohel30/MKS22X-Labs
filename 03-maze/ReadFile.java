@@ -15,22 +15,12 @@ public class ReadFile {
           info += temp + "\n";
           values.add(temp);
         }
-        System.out.println(info);
         String[][] holder = new String[values.size()][values.get(0).length()];
-
         for(int a =0; a < holder.length; a++){
           for(int b = 0; b < holder[a].length; b++){
               holder[a][b] = values.get(a).substring(b,b+1);
           }
         }
-
-        for(int a =0; a < holder.length; a++){
-          for(int b = 0; b < holder[a].length; b++){
-            System.out.print(holder[a][b]);
-          }
-          System.out.print("\n");
-        }
-
         return holder;
     }
 
