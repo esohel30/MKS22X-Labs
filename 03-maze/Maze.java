@@ -22,10 +22,24 @@ public class Maze {
     Make sure your file reading is able to handle this.
     */
     public Maze(String filename) throws FileNotFoundException {
-         this.maze = ReadFile.getValuesFromFile(filename);
-         setAnimate(false);
+        String info = "" ;
+        File text = new File(filename);
+        Scanner input = new Scanner(text);
+        ArrayList<String> values = new ArrayList<String>();
 
+        while(input.hasNextLine()){
+          String temp = input.nextLine();
+          info += temp + "\n";
+          values.add(temp);
+        }
+        maze = new char[values.size()][values.get(0).length()];
+        for(int a =0; a < maze.length; a++){
+          for(int b = 0; b < maze[a].length; b++){
+              maze[a][b] = values.get(a).charAt(b);
+          }
+         setAnimate(false);
     }
+  }
 
     private void wait(int millis) {
         try {
@@ -89,12 +103,43 @@ public class Maze {
     All visited spots that were not part of the solution are changed to '.'
     All visited spots that are part of the solution are changed to '@'
     */
+
+    private boolean goodSpace(int row, int col){
+      if(maze[row + 1][col] == ' ' || maze[row][col + 1] == ' ' ||
+         maze[row - 1][col] == ' ' || maze[row][col -1 ] == ' '){
+           return true;
+      }else{
+        return false;
+      }
+    }
+
     private int solve(int row, int col) { //you can add more parameters since this is private
         //automatic animation! You are welcome.
         if (animate) {
             gotoTop();
             System.out.println(this);
             wait(50);
+        }
+
+        maze[row][col] = '@';
+
+        if(maze[row][col] == 'e'){
+          return 0;
+        }
+        if(!goodSpace(row, col)){
+          return -1;
+        }
+
+        else{
+          if(goodSpace(row, col)){
+
+
+
+          }
+
+
+
+
         }
 
 
@@ -106,7 +151,8 @@ public class Maze {
 
     public static void main(String[] args) {
       try {
-        Maze x = new Maze("maze3");
+        Maze x = new Maze("maze1");
+        x.solve(5,1);
         System.out.print(x);
       }
       catch(FileNotFoundException e){
