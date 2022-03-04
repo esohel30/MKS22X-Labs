@@ -37,8 +37,8 @@ public class Maze {
           for(int b = 0; b < maze[a].length; b++){
               maze[a][b] = values.get(a).charAt(b);
           }
-         setAnimate(false);
     }
+      setAnimate(false);
   }
 
     private void wait(int millis) {
@@ -133,16 +133,9 @@ public class Maze {
         else{
           if(goodSpace(row, col)){
 
-
-
           }
 
-
-
-
         }
-
-
 
         //COMPLETE SOLVE
         return -1; //so it compiles
