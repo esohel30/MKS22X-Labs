@@ -81,11 +81,12 @@ public class MazeGenerator {
         int rowSize = proto.length - 2;
         int rowLength = proto[0].length - 2;
         boolean state = false;
-        proto[inputY][inputX] = 'S'; // user picks where to place start
         int x = 0;
         int y = 0;
         filler(proto);
         placer(proto, inputY, inputX);
+        proto[inputY][inputX] = 'S'; // user picks where to place start
+
 
         while (!state) {
             Random tempor = new Random();
