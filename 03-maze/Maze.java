@@ -142,7 +142,11 @@ public class Maze {
           if(up >= 0){
             return up+1;
           }
-          
+          right = solve(row, col+1);
+          if(right >= 0){
+            return right +1;
+          }
+          maze[row][col] = '.';
 
         }
         //COMPLETE SOLVE
