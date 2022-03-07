@@ -65,13 +65,14 @@ public class Maze {
     */
     public String toString() {
         String temp = "";
-        for(int i =0; i < maze.length; i ++){
-          for(int j =0; j < maze[i].length; j++){
-              temp += (maze[i][j]);
+        for(int a =0; a < maze.length; a ++){
+          for(int j =0; j < maze[a].length; j++){
+              temp += (maze[a][j]);
           }
-          temp += ("\n");
+          if(a != maze.length -1){
+            temp = temp + "\n";
+          }
         }
-
         return temp;
     }
 
@@ -86,7 +87,6 @@ public class Maze {
         }
         //start solving at the location of the s.
         return solve(startRow, startCol);
-
     }
 
     /*
@@ -104,15 +104,6 @@ public class Maze {
     All visited spots that are part of the solution are changed to '@'
     */
 
-    private boolean goodSpace(int row, int col){
-      if(maze[row + 1][col] == ' ' || maze[row][col + 1] == ' ' ||
-         maze[row - 1][col] == ' ' || maze[row][col -1 ] == ' '){
-           return true;
-      }else{
-        return false;
-      }
-    }
-
     private int solve(int row, int col) { //you can add more parameters since this is private
         //automatic animation! You are welcome.
         if (animate) {
@@ -121,21 +112,8 @@ public class Maze {
             wait(50);
         }
 
-        maze[row][col] = '@';
+      
 
-        if(maze[row][col] == 'e'){
-          return 0;
-        }
-        if(!goodSpace(row, col)){
-          return -1;
-        }
-
-        else{
-          if(goodSpace(row, col)){
-
-          }
-
-        }
 
         //COMPLETE SOLVE
         return -1; //so it compiles
