@@ -36,6 +36,10 @@ public class Maze {
         for(int a =0; a < maze.length; a++){
           for(int b = 0; b < maze[a].length; b++){
               maze[a][b] = values.get(a).charAt(b);
+              if(maze[a][b] == 's'){
+                startRow = a;
+                startCol = b;
+              }
           }
     }
       setAnimate(false);
@@ -112,7 +116,14 @@ public class Maze {
             wait(50);
         }
 
-      
+        if(maze[row][col] == 'E') {
+          return 0;
+        }
+        if(maze[row][col] == '#'){
+          return -1;
+        }
+        
+        }
 
 
         //COMPLETE SOLVE
