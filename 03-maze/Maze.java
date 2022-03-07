@@ -36,14 +36,13 @@ public class Maze {
         for(int a =0; a < maze.length; a++){
           for(int b = 0; b < maze[a].length; b++){
               maze[a][b] = values.get(a).charAt(b);
-              if(maze[a][b] == 's'){
+              if(maze[a][b] == 'S'){
                 startRow = a;
                 startCol = b;
               }
           }
     }
-      System.out.println(a);
-      System.out.println(b);
+
       setAnimate(false);
   }
 
@@ -118,13 +117,15 @@ public class Maze {
             wait(50);
         }
 
-        if(maze[row][col] == 'E') {
+        int temp = maze[row][col];
+        if(temp == 'E') {
           return 0;
         }
-        if(maze[row][col] == '#'){
+        if(temp !=  'S' && temp != ' '){
           return -1;
         }
         else{
+          maze[row][col] = '@';
           int down  = 0;
           int left  = 0;
           int up    = 0;
@@ -157,7 +158,8 @@ public class Maze {
     public static void main(String[] args) {
       try {
         Maze x = new Maze("maze1");
-        System.out.print(x.solve());
+        x.solve();
+        System.out.println(x);
       }
       catch(FileNotFoundException e){
         System.out.print(e);
