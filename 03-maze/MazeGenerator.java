@@ -27,9 +27,9 @@ public class MazeGenerator {
 
     public static void randompick(String[] moves, char[][] protos, int y, int x) {
         for (int a = 0; a < 4; a++) {
-            if (moves[a] == "down")  placer(protos, y - 1, x);
-            if (moves[a] == "left")  placer(protos, y, x + 1);
-            if (moves[a] == "up")    placer(protos, y + 1, x);
+            if (moves[a] == "down") placer(protos, y - 1, x);
+            if (moves[a] == "left") placer(protos, y, x + 1);
+            if (moves[a] == "up") placer(protos, y + 1, x);
             if (moves[a] == "right") placer(protos, y, x - 1);
         }
     }
@@ -54,7 +54,12 @@ public class MazeGenerator {
 
     public static void placer(char[][] proto, int y, int x) {
         if (badSpot(proto, y, x)) {
-            String[] randomized = { "up","right",  "down",  "left" };
+            String[] randomized = {
+                "up",
+                "right",
+                "down",
+                "left"
+            };
             Random rand = new Random();
 
             for (int i = 0; i < randomized.length; i++) {
@@ -70,11 +75,27 @@ public class MazeGenerator {
     }
 
 
+
     public static void generate(char[][] proto, int inputY, int inputX) {
+        int rowSize = proto.length - 2;
+        int rowLength = proto[0].length - 2;
         boolean state = false;
+        int x = 0;
+        int y = 0;
         filler(proto);
         placer(proto, inputY, inputX);
         proto[inputY][inputX] = 'S'; // user picks where to place start
 
-          }
+        while (!state) {
+            Random tempor = new Random();
+            x = tempor.nextInt(rowSize) + 1;
+            y = tempor.nextInt(rowLength) + 1;
+
+            if (proto[y][x] == ' ') {
+                // if there is available space
+                proto[y][x] = 'E';
+                state = true;
+            }
+        }
+    }
 }
