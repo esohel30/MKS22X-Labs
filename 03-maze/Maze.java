@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Maze {
-    private char[][] maze = new char[0][0];
+    private char[][] maze;
     private boolean animate; //false by default
     private int startRow, startCol;
 
@@ -22,29 +22,29 @@ public class Maze {
     Make sure your file reading is able to handle this.
     */
     public Maze(String filename) throws FileNotFoundException {
-        String info = "" ;
         File text = new File(filename);
         Scanner input = new Scanner(text);
-        ArrayList<String> values = new ArrayList<String>();
+        ArrayList < String > values = new ArrayList < String > ();
 
-        while(input.hasNextLine()){
-          String temp = input.nextLine();
-          info += temp + "\n";
-          values.add(temp);
+        while (input.hasNextLine()) {
+            String temp = input.nextLine();
+            if (!temp.equals("")) {
+                values.add(temp);
+            }
+
+            maze = new char[values.size()][values.get(0).length()];
+            for (int a = 0; a < maze.length; a++) {
+                for (int b = 0; b < maze[a].length; b++) {
+                    maze[a][b] = values.get(a).charAt(b);
+                    if (maze[a][b] == 'S') {
+                        startRow = a;
+                        startCol = b;
+                    }
+                }
+            }
         }
-        maze = new char[values.size()][values.get(0).length()];
-        for(int a =0; a < maze.length; a++){
-          for(int b = 0; b < maze[a].length; b++){
-              maze[a][b] = values.get(a).charAt(b);
-              if(maze[a][b] == 'S'){
-                startRow = a;
-                startCol = b;
-              }
-          }
+        setAnimate(false);
     }
-
-      setAnimate(false);
-  }
 
     private void wait(int millis) {
         try {
@@ -68,15 +68,16 @@ public class Maze {
     /*Return the string that represents the maze.
     It should look like the text file with some characters replaced.
     */
+
     public String toString() {
         String temp = "";
-        for(int a =0; a < maze.length; a ++){
-          for(int j =0; j < maze[a].length; j++){
-              temp += (maze[a][j]);
-          }
-          if(a != maze.length -1){
-            temp = temp + "\n";
-          }
+        for (int a = 0; a < maze.length; a++) {
+            for (int j = 0; j < maze[a].length; j++) {
+                temp += (maze[a][j]);
+            }
+            if (a != maze.length - 1) {
+                temp = temp + "\n";
+            }
         }
         return temp;
     }
@@ -87,13 +88,12 @@ public class Maze {
     */
     public int solve() {
         //only clear the terminal if you are running animation
-        if (animate){
+        if (animate) {
             clearTerminal();
         }
         //start solving at the location of the s.
         return solve(startRow, startCol);
     }
-
     /*
     Recursive Solve function:
 
@@ -114,40 +114,39 @@ public class Maze {
         if (animate) {
             gotoTop();
             System.out.println(this);
-            wait(50);
+            wait(25);
         }
 
         int temp = maze[row][col];
-        if(temp == 'E') {
-          return 0;
+        if (temp == 'E') {
+            return 0;
         }
-        if(temp !=  'S' && temp != ' '){
-          return -1;
-        }
-        else{
-          maze[row][col] = '@';
-          int down  = 0;
-          int left  = 0;
-          int up    = 0;
-          int right = 0;
+        if (temp == '@' || temp == '#') {
+            return -1;
+        } else {
+            maze[row][col] = '@';
+            int down = 0;
+            int left = 0;
+            int up = 0;
+            int right = 0;
 
-          down = solve(row+1, col);
-          if(down >= 0){
-            return down+1;
-          }
-          left = solve(row, col-1);
-          if(left >= 0){
-            return left+1;
-          }
-          up = solve(row-1, col);
-          if(up >= 0){
-            return up+1;
-          }
-          right = solve(row, col+1);
-          if(right >= 0){
-            return right +1;
-          }
-          maze[row][col] = '.';
+            down = solve(row + 1, col);
+            if (down >= 0) {
+                return down + 1;
+            }
+            left = solve(row, col - 1);
+            if (left >= 0) {
+                return left + 1;
+            }
+            up = solve(row - 1, col);
+            if (up >= 0) {
+                return up + 1;
+            }
+            right = solve(row, col + 1);
+            if (right >= 0) {
+                return right + 1;
+            }
+            maze[row][col] = '.';
 
         }
         //COMPLETE SOLVE
@@ -155,14 +154,4 @@ public class Maze {
     }
 
 
-    public static void main(String[] args) {
-      try {
-        Maze x = new Maze("maze1");
-        x.solve();
-        System.out.println(x);
-      }
-      catch(FileNotFoundException e){
-        System.out.print(e);
-      }
-    }
 }
