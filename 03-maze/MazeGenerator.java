@@ -35,12 +35,13 @@ public class MazeGenerator {
     }
 
     public static boolean goodSpot(char[][] proto, int y, int x, int tot) {
+        tot = 0;
         if (proto[y][x + 1] == ' ') tot += 1;
         if (proto[y + 1][x] == ' ') tot += 1;
         if (proto[y - 1][x] == ' ') tot += 1;
         if (proto[y][x - 1] == ' ') tot += 1;
 
-        return (tot < 2);
+        return (tot < 2 );
     }
 
     public static boolean badSpot(char[][] proto, int y, int x) {
@@ -49,7 +50,7 @@ public class MazeGenerator {
 
         if (y == 0 || x == 0) return false; // out of bounds
         if (x == proto[0].length - 1 || y == proto.length - 1) return false; // out of bounds
-        return goodSpot(proto, y, x, temp); // empty spots around
+        return goodSpot(proto, y, x, 0); // empty spots around
     }
 
     public static void placer(char[][] proto, int y, int x) {
@@ -90,8 +91,8 @@ public class MazeGenerator {
 
         while (!state) {
             Random tempor = new Random();
-            x = tempor.nextInt(rowSize) + 1;
-            y = tempor.nextInt(rowLength) + 1;
+            x = tempor.nextInt(rowLength) + 1;
+            y = tempor.nextInt(rowSize) + 1;
 
             if (x < proto.length && y < proto[0].length && proto[y][x] == ' ' ) {
                 // if there is available space
