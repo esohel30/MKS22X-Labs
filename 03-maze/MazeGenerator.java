@@ -45,19 +45,16 @@ public class MazeGenerator {
 
     public static boolean badSpot(char[][] proto, int y, int x) {
         int temp = 0;
+        if (proto[y][x] == ' ') return false;
 
         if (y == 0 || x == 0) return false; // out of bounds
         if (x == proto[0].length - 1 || y == proto.length - 1) return false; // out of bounds
-        if (proto[y][x] == ' ') return false;
-
         return goodSpot(proto, y, x, temp); // empty spots around
     }
 
     public static void placer(char[][] proto, int y, int x) {
         if (badSpot(proto, y, x)) {
-
             String[] randomized = { "up","right",  "down",  "left" };
-
             Random rand = new Random();
 
             for (int i = 0; i < randomized.length; i++) {
@@ -73,5 +70,11 @@ public class MazeGenerator {
     }
 
 
-    
+    public static void generate(char[][] proto, int inputY, int inputX) {
+        boolean state = false;
+        filler(proto);
+        placer(proto, inputY, inputX);
+        proto[inputY][inputX] = 'S'; // user picks where to place start
+
+          }
 }

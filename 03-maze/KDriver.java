@@ -10,7 +10,9 @@ import java.io.*;
             //you must fill maze with '#'
             MazeGenerator.generate(maze,startrow,startcol);
             //Print the maze here.
-            System.out.println("MAZE!");//You need a way to show the maze without the array brackets etc.
+            System.out.println("MAZE!");
+            System.out.println(MazeGenerator.toString(maze));
+            //You need a way to show the maze without the array brackets etc.
           }else if(args.length == 1  || args.length == 2){
               try{
                   Maze m = new Maze(args[0]);
