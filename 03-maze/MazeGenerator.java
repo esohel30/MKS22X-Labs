@@ -1,13 +1,12 @@
 import java.util.*;
-
 public class MazeGenerator {
 
-    public static void filler(char[][] proto){
-      for (int i = 0; i < proto.length; i++) {
-          for (int j = 0; j < proto[0].length; j++) {
-              proto[i][j] = '#';
-          }
-      }
+    public static void filler(char[][] proto) {
+        for (int i = 0; i < proto.length; i++) {
+            for (int j = 0; j < proto[0].length; j++) {
+                proto[i][j] = '#';
+            }
+        }
     }
 
     public static String toString(char[][] prototype) {
@@ -23,6 +22,11 @@ public class MazeGenerator {
         return temp;
     }
 
+    public static boolean goodSpotCheck(char[][] proto, int y, int x, int tot) {
+        if (proto[y][x + 1] == ' ') tot += 1;
+        if (proto[y + 1][x] == ' ') tot += 1;
+        if (proto[y - 1][x] == ' ') tot += 1;
+        if (proto[y][x - 1] == ' ') tot += 1;
 
-  
-}
+        return (tot < 2);
+    }
