@@ -4,7 +4,8 @@ import java.io.*;
 public class Maze {
     private char[][] maze;
     private boolean animate; //false by default
-    private int startRow, startCol;
+    private int startRow;
+    private int startCol;
 
     /*Constructor loads a maze text file, and sets animate to false by default.
     When the file is not found then:
@@ -22,24 +23,27 @@ public class Maze {
     Make sure your file reading is able to handle this.
     */
     public Maze(String filename) throws FileNotFoundException {
-        File text = new File(filename);
-        Scanner input = new Scanner(text);
+        File texter = new File(filename);
+        Scanner input = new Scanner(texter);
         ArrayList < String > values = new ArrayList < String > ();
 
         while (input.hasNextLine()) {
             String temp = input.nextLine();
-            if (!temp.equals("")) {
+            if (!temp.equals("")) { // ignore pesky empty lines that show up at the ends.
                 values.add(temp);
             }
 
             maze = new char[values.size()][values.get(0).length()];
             for (int a = 0; a < maze.length; a++) {
                 for (int b = 0; b < maze[a].length; b++) {
+
                     maze[a][b] = values.get(a).charAt(b);
-                    if (maze[a][b] == 'S') {
+
+                    if (maze[a][b] == 'S') { // find location of start
                         startRow = a;
                         startCol = b;
-                    }
+                      }
+
                 }
             }
         }
@@ -51,11 +55,9 @@ public class Maze {
             Thread.sleep(millis);
         } catch (InterruptedException e) {}
     }
-
     public void setAnimate(boolean b) {
         animate = b;
     }
-
     public static void clearTerminal() {
         //erase terminal
         System.out.println("\033[2J");
@@ -75,9 +77,7 @@ public class Maze {
             for (int j = 0; j < maze[a].length; j++) {
                 temp += (maze[a][j]);
             }
-            if (a != maze.length - 1) {
                 temp = temp + "\n";
-            }
         }
         return temp;
     }
@@ -114,15 +114,15 @@ public class Maze {
         if (animate) {
             gotoTop();
             System.out.println(this);
-            wait(25);
+            wait(50);
         }
 
         int temp = maze[row][col];
         if (temp == 'E') {
-            return 0;
+            return 0; // the end is reached basic case
         }
         if (temp == '@' || temp == '#') {
-            return -1;
+            return -1; //more steps needed?
         } else {
             maze[row][col] = '@';
             int down = 0;
@@ -146,12 +146,22 @@ public class Maze {
             if (right >= 0) {
                 return right + 1;
             }
-            maze[row][col] = '.';
+
+
+            maze[row][col] = '.'; // dead ends
 
         }
         //COMPLETE SOLVE
         return -1; //so it compiles
     }
+
+
+
+
+
+
+
+
 
 
 }

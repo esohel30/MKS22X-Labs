@@ -7,12 +7,12 @@ public class Driver{
 
         //files do not require an extension like .txt or .dat,
         //but if they have them, you must include them in your filename String.
-        String filename = "maze5";
+        String filename = "maze4";
 
         try{
           Maze f;
           f = new Maze(filename);
-          f.setAnimate(false);
+          f.setAnimate(true);
           System.out.println(f.solve()+" steps");
           System.out.println(f);
         }catch(FileNotFoundException e){
