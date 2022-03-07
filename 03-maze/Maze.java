@@ -114,7 +114,7 @@ public class Maze {
         if (animate) {
             gotoTop();
             System.out.println(this);
-            wait(50);
+            wait(5);
         }
 
         int temp = maze[row][col];
