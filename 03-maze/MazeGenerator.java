@@ -22,7 +22,7 @@ public class MazeGenerator {
         return temp;
     }
 
-    public static boolean goodSpotCheck(char[][] proto, int y, int x, int tot) {
+    public static boolean goodSpot(char[][] proto, int y, int x, int tot) {
         if (proto[y][x + 1] == ' ') tot += 1;
         if (proto[y + 1][x] == ' ') tot += 1;
         if (proto[y - 1][x] == ' ') tot += 1;
@@ -30,3 +30,16 @@ public class MazeGenerator {
 
         return (tot < 2);
     }
+
+    public static boolean badSpot(char[][] proto, int y, int x) {
+        int temp = 0;
+
+        if (y == 0 || x == 0) return false;
+        if (x == proto[0].length - 1 || y == proto.length - 1) return false;
+        if (proto[y][x] == ' ') return false;
+
+        return goodSpotCheck(proto, y, x, temp);
+    }
+
+
+  }
