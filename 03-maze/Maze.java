@@ -138,7 +138,12 @@ public class Maze {
           if(left >= 0){
             return left+1;
           }
-        
+          up = solve(row-1, col);
+          if(up >= 0){
+            return up+1;
+          }
+          
+
         }
         //COMPLETE SOLVE
         return -1; //so it compiles
