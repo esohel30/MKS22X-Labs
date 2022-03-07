@@ -130,7 +130,12 @@ public class Maze {
           int up    = 0;
           int right = 0;
 
-
+          down = solve(row+1, col);
+          if(down >= 0){
+            return down+1;
+          }
+          
+        }
         //COMPLETE SOLVE
         return -1; //so it compiles
     }
