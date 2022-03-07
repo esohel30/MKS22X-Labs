@@ -42,6 +42,8 @@ public class Maze {
               }
           }
     }
+      System.out.println(a);
+      System.out.println(b);
       setAnimate(false);
   }
 
@@ -86,7 +88,7 @@ public class Maze {
     */
     public int solve() {
         //only clear the terminal if you are running animation
-        if (animate) {
+        if (animate){
             clearTerminal();
         }
         //start solving at the location of the s.
@@ -122,8 +124,11 @@ public class Maze {
         if(maze[row][col] == '#'){
           return -1;
         }
-        
-        }
+        else{
+          int down  = 0;
+          int left  = 0;
+          int up    = 0;
+          int right = 0;
 
 
         //COMPLETE SOLVE
@@ -134,8 +139,7 @@ public class Maze {
     public static void main(String[] args) {
       try {
         Maze x = new Maze("maze1");
-        x.solve(5,1);
-        System.out.print(x);
+        System.out.print(x.solve());
       }
       catch(FileNotFoundException e){
         System.out.print(e);
