@@ -1,30 +1,40 @@
+import java.util.*;
+import java.io.*;
+
 public class Bronze{
   private int R, C, E, N;
   private int[][] pasture;
-  private int R_s, C_s, D_sl
-  
+  private int R_s, C_s, D_sl;
 
 
-
-  public farm(String filename){
+  public Bronze(String filename) throws FileNotFoundException{
     File texter = new File(filename);
     Scanner input = new Scanner(texter);
+    R = input.nextInt();
+    C = input.nextInt();
+    E = input.nextInt();
+    N = input.nextInt();
 
-    while (input.hasNextLine()) {
-        String temp = input.nextLine();
-        if (!temp.equals("")) { // ignore pesky empty lines that show up at the ends.
-            values.add(temp);
-        }
+    pasture = new int [R][C];
 
-
-
-
+    for(int i = 0; i < R; i++){
+      for(int j = 0; j < C; j++){
+        pasture[i][j] = input.nextInt();
+      }
+    }
+    
   }
 
 
 
   public static void main(String[] args) {
+    try{
+      Bronze x = new Bronze ("sampleInput2");
 
+
+    }catch(FileNotFoundException e){
+        System.out.println(e);
+    }
   }
 
 

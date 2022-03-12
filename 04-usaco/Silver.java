@@ -23,13 +23,9 @@ public class Silver{
       }
     }
 
-      R1 = input.nextInt();  C1 = input.nextInt();
-      R2 = input.nextInt();  C2 = input.nextInt();
-
-    }
-
-
-
+    R1 = input.nextInt();  C1 = input.nextInt();
+    R2 = input.nextInt();  C2 = input.nextInt();
+  }
 
 
   public static void main(String[] args) {
