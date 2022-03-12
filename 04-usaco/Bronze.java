@@ -22,6 +22,11 @@ public class Bronze{
         pasture[i][j] = input.nextInt();
       }
     }
+
+  }
+
+  public void stomp( int R_s, int C_s, int D_sl) {
+
     
   }
 
