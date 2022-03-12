@@ -22,12 +22,23 @@ public class Bronze{
         pasture[i][j] = input.nextInt();
       }
     }
-
   }
 
-  public void stomp( int R_s, int C_s, int D_sl) {
+  public String toString(){
+    String temp = "";
+    for(int i = 0; i < R; i++){
+      for(int j = 0; j < C; j++){
+        temp += pasture[i][j];
+      }
+      temp += "\n";
+    }
+    return temp;
+  }
 
-    
+
+  public void stomp(int R_s, int C_s, int D_sl){
+
+
   }
 
 
@@ -35,6 +46,7 @@ public class Bronze{
   public static void main(String[] args) {
     try{
       Bronze x = new Bronze ("sampleInput2");
+      System.out.print(x);
 
 
     }catch(FileNotFoundException e){
