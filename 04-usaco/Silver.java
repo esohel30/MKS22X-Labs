@@ -32,6 +32,8 @@ public class Silver {
 
             pasture[R1 - 1][C1 - 1] = 1;
 
+          
+    }
 
     private static boolean isG(char[][] moov, int N, int M) {
         if (moov[N][M] == '.') {
@@ -46,10 +48,24 @@ public class Silver {
     private static boolean isIn(int N, int M, int row, int col) {
         return (N > -1 && N < row && M > -1 && M < col);
     }
-  }
-}
 
 
+    private static void placer(int[][] rep, int r, int c, int N, int M, int[][] farm, char[][] moov) {
+        //clockwise
+
+        if (isIn(N, M - 1, r, c) && isG(moov, N, M - 1)) {
+            rep[N][M] += farm[N][M - 1]; //up
+        }
+        if (isIn(N + 1, M, r, c) && isG(moov, N + 1, M)) {
+            rep[N][M] += farm[N + 1][M]; //right
+        }
+        if (isIn(N, M + 1, r, c) && isG(moov, N, M + 1)) {
+            rep[N][M] += farm[N][M + 1]; //down
+        }
+        if (isIn(N - 1, M, r, c) && isG(moov, N - 1, M)) {
+            rep[N][M] += farm[N - 1][M]; //left
+        }
+    }
 
     public static void main(String[] args) {
         System.out.print(solve("ctravel.2.in"));
