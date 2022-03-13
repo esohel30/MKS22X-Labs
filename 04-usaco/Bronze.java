@@ -68,7 +68,7 @@ public class Bronze{
 
   public static void main(String[] args) {
     try{
-      System.out.print(Bronze.solve("sampleInput2"));
+      System.out.print(Bronze.solve("ctravel.1.in"));
 
 
     }catch(FileNotFoundException e){
