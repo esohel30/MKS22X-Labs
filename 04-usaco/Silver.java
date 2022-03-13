@@ -33,6 +33,23 @@ public class Silver {
             pasture[R1 - 1][C1 - 1] = 1;
 
 
+    private static boolean isG(char[][] moov, int N, int M) {
+        if (moov[N][M] == '.') {
+            return true;
+        }
+        if (moov[N][M] == '*') {
+            return false;
+        }
+        return false;
+    }
+
+    private static boolean isIn(int N, int M, int row, int col) {
+        return (N > -1 && N < row && M > -1 && M < col);
+    }
+  }
+}
+
+
 
     public static void main(String[] args) {
         System.out.print(solve("ctravel.2.in"));
