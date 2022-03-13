@@ -51,7 +51,6 @@ public class Silver {
                 //   }
                 //   System.out.println("\n");
                 // }
-                // System.out.println("\n");
 
                 pasture = replace; // switch adresses
             }
