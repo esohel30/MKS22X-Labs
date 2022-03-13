@@ -97,7 +97,7 @@ public class Silver {
     }
 
     public static void main(String[] args) {
-        System.out.print(solve("ctravel.2.in"));
+        System.out.print(solve("ctravel.1.in"));
     }
 
 }
