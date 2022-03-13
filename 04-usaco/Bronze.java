@@ -23,6 +23,18 @@ public class Bronze{
       }
     }
 
+    for(int z =0; z < N; z ++){
+      stomp(pasture, input.nextInt(), input.nextInt(), input.nextInt());
+    }
+
+
+    // for(int a = 0; a < pasture.length; a ++){
+    //   for(int b = 0; b < pasture[0].length; b++){
+    //     System.out.print(pasture[a][b] + " ");
+    //   }
+    //   System.out.print("\n");
+    // }
+
     return 0;
   }
 
@@ -30,19 +42,26 @@ public class Bronze{
 
 
 
-  public void stomp(char[][] pasture, int R_s, int C_s, int D_sl){
-    int max = -1;
-    for(int i =0; i < D_sl; i++){
+  public static void stomp(int[][] pasture, int R_s, int C_s, int D_sl){
 
-      for(int a= R_s; a < R_s+4; a ++){
-        for(int b = C_s; b < C_s + 4; b ++){
+    for(int i =0; i < D_sl; i++){
+      int max = -1;
+
+      for(int a = R_s -1; a < R_s +2; a ++){
+        for(int b = C_s -1; b < C_s + 2; b ++){
           if(pasture[a][b] > max){
             max = pasture[a][b];
           }
         }
-    }
+      }
 
-    System.out.println(max);
+      for(int d = R_s -1; d < R_s +2; d ++){
+        for(int e = C_s -1; e < C_s + 2; e ++){
+          if(pasture[d][e] == max){
+            pasture[d][e] --;
+          }
+        }
+      }
     }
   }
 
