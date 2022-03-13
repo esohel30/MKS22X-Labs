@@ -2,12 +2,12 @@ import java.util.*;
 import java.io.*;
 
 public class Bronze{
-  private int R, C, E, N;
-  private int[][] pasture;
-  private int R_s, C_s, D_sl;
 
+  public static long solve(String filename) throws FileNotFoundException {
+    int R, C, E, N;
+    int[][] pasture;
+    int R_s, C_s, D_sl;
 
-  public Bronze(String filename) throws FileNotFoundException{
     File texter = new File(filename);
     Scanner input = new Scanner(texter);
     R = input.nextInt();
@@ -22,44 +22,41 @@ public class Bronze{
         pasture[i][j] = input.nextInt();
       }
     }
+
+    return 0;
   }
 
-  public String toString(){
-    String temp = "";
-    for(int i = 0; i < R; i++){
-      for(int j = 0; j < C; j++){
-        temp += pasture[i][j];
-      }
-      temp += "\n";
+
+
+
+
+  public void stomp(char[][] pasture, int R_s, int C_s, int D_sl){
+    int max = -1;
+    for(int i =0; i < D_sl; i++){
+
+      for(int a= R_s; a < R_s+4; a ++){
+        for(int b = C_s; b < C_s + 4; b ++){
+          if(pasture[a][b] > max){
+            max = pasture[a][b];
+          }
+        }
     }
-    return temp;
-  }
 
-
-  public void stomp(int R_s, int C_s, int D_sl){
-
-
+    System.out.println(max);
+    }
   }
 
 
 
   public static void main(String[] args) {
     try{
-      Bronze x = new Bronze ("sampleInput2");
-      System.out.print(x);
+      Bronze.solve("sampleInput2");
 
 
     }catch(FileNotFoundException e){
         System.out.println(e);
     }
   }
-
-
-
-
-
-
-
 
 
 
