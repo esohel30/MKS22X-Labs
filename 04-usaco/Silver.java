@@ -32,7 +32,34 @@ public class Silver {
 
             pasture[R1 - 1][C1 - 1] = 1;
 
-          
+            for (int c = 0; c < T; c++) { // for the number of steps
+                int[][] replace = new int[N][M];
+                int row = replace.length;
+                int col = replace[0].length;
+
+                for (int z = 0; z < N; z++) {
+                    for (int y = 0; y < M; y++) {
+                        if (isG(moov, z, y)) {
+                            placer(replace, row, col, z, y, pasture, moov);
+                        }
+                    }
+                }
+
+                // for(int x = 0; x < replace.length; x++){
+                //   for(int f = 0; f < replace[0].length; f++){
+                //     System.out.print(replace[x][f] + "  ");
+                //   }
+                //   System.out.println("\n");
+                // }
+                // System.out.println("\n");
+
+                pasture = replace; // switch adresses
+            }
+
+            return pasture[R2 - 1][C2 - 1];
+        } catch (FileNotFoundException e) {
+            return -1;
+        }
     }
 
     private static boolean isG(char[][] moov, int N, int M) {
