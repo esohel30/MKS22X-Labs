@@ -27,23 +27,17 @@ public class Bronze{
       stomp(pasture, input.nextInt(), input.nextInt(), input.nextInt());
     }
 
+    int tot =0;
     for(int v = 0; v < R; v++){
       for(int m = 0; m < C; m ++){
         pasture[v][m] = E - pasture[v][m];
+        if(pasture[v][m] > 0){
+          tot+= pasture[v][m];
+        }
       }
     }
 
-
-
-
-    for(int a = 0; a < pasture.length; a ++){
-      for(int b = 0; b < pasture[0].length; b++){
-        System.out.print(pasture[a][b] + " ");
-      }
-      System.out.print("\n");
-    }
-
-    return 0;
+    return tot * (6*12) * (6*12);
   }
 
 
@@ -74,7 +68,7 @@ public class Bronze{
 
   public static void main(String[] args) {
     try{
-      Bronze.solve("sampleInput2");
+      System.out.print(Bronze.solve("sampleInput2"));
 
 
     }catch(FileNotFoundException e){
