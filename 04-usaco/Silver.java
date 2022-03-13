@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Silver {
+
     public static long solve(String filename) {
 
         try {
@@ -9,47 +10,32 @@ public class Silver {
             Scanner input = new Scanner(texter);
 
             int N, M, T;
-            char[][] pasture;
+            int[][] pasture;
+            char[][] moov;
             int R1, C1, R2, C2;
-
             N = input.nextInt();
             M = input.nextInt();
             T = input.nextInt();
-            pasture = new char[N][M];
+            pasture = new int[N][M];
+            moov = new char[N][M]; // get it moooooooooo v hahaha
 
-            for (int i = 0; i < N; i++) {
-                String x = input.next();
-                for (int j = 0; j < M; j++) {
-                    pasture[i][j] = x.charAt(j);
-                }
-            }
-
-            R1 = input.nextInt();
-            C1 = input.nextInt();
-            R2 = input.nextInt();
-            C2 = input.nextInt();
-
-
+            //fill in moov with array values
             for (int a = 0; a < N; a++) {
+                String holder = input.next();
                 for (int b = 0; b < M; b++) {
-                    System.out.print(pasture[a][b] + " ");
+                    moov[a][b] = holder.charAt(b);
                 }
-                System.out.print("\n");
-
             }
 
+            R1 = input.nextInt();  C1 = input.nextInt();
+            R2 = input.nextInt();  C2 = input.nextInt();
 
-            return 1;
-        } catch (FileNotFoundException e) {
-            return -1;
-        }
-    }
+            pasture[R1 - 1][C1 - 1] = 1;
+
 
 
     public static void main(String[] args) {
-        solve("ctravel.1.in");
+        System.out.print(solve("ctravel.2.in"));
     }
-
-
 
 }
