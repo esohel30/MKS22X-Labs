@@ -39,7 +39,13 @@ public class Quick {
         return quickselect(arr, k, temp + 1, hi);
     }
 
-
+    public static void quicksort(int[] arr, int lo, int hi) {
+        if (lo < hi) {
+            int ph = partition(arr, lo, hi);
+            quicksort(arr, lo, ph - 1);
+            quicksort(arr, ph + 1, hi);
+        }
+    }
 
     public static void quicksort(int[] data) {
         quicksort(data, 0, data.length - 1);
@@ -51,8 +57,7 @@ public class Quick {
         int[] a = {10,9,8,7,6,};
         quicksort(a);
         System.out.print(Arrays.toString(a));
-
-        public static void main(String[] args) {
+        
           partition( new int[] {4,3,2,1,0}, 0, 4);
           partition( new int[] {4,3,2,1,0,997,998,999}, 0, 4);
           partition( new int[] {997,998,999,4,3,2,1,0},3,7);
@@ -71,11 +76,5 @@ public class Quick {
 
 
         }
-    }
-
-
-
-
-
 
 }
