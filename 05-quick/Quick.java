@@ -41,25 +41,40 @@ public class Quick {
 
 
 
-    public static void main(String[] args) {
-      partition( new int[] {4,3,2,1,0}, 0, 4);
-      partition( new int[] {4,3,2,1,0,997,998,999}, 0, 4);
-      partition( new int[] {997,998,999,4,3,2,1,0},3,7);
-      partition( new int[] {993,994,995,4,3,2,1,0,997,998,999},3,7);
-
-      int[] ary = {2, 10, 15, 23, 0, 5};
-      System.out.println(  quickselect(ary , 0 )); // SHOULD RETURN0
-      System.out.println(  quickselect( ary , 1 ));// SHOULD RETURN2
-      System.out.println(  quickselect( ary , 2 ));// SHOULD RETURN5
-      System.out.println(  quickselect( ary , 3 ));// SHOULD RETURN10
-      System.out.println(  quickselect( ary , 4 ));// SHOULD RETURN15
-      System.out.println(  quickselect( ary , 5 ));// SHOULD RETURN23
-
-      //EVERYTHING WORKS
-
-
-
+    public static void quicksort(int[] data) {
+        quicksort(data, 0, data.length - 1);
     }
+
+
+
+    public static void main(String[] args) {
+        int[] a = {10,9,8,7,6,};
+        quicksort(a);
+        System.out.print(Arrays.toString(a));
+
+        public static void main(String[] args) {
+          partition( new int[] {4,3,2,1,0}, 0, 4);
+          partition( new int[] {4,3,2,1,0,997,998,999}, 0, 4);
+          partition( new int[] {997,998,999,4,3,2,1,0},3,7);
+          partition( new int[] {993,994,995,4,3,2,1,0,997,998,999},3,7);
+
+          int[] ary = {2, 10, 15, 23, 0, 5};
+          System.out.println(  quickselect(ary , 0 )); // SHOULD RETURN0
+          System.out.println(  quickselect( ary , 1 ));// SHOULD RETURN2
+          System.out.println(  quickselect( ary , 2 ));// SHOULD RETURN5
+          System.out.println(  quickselect( ary , 3 ));// SHOULD RETURN10
+          System.out.println(  quickselect( ary , 4 ));// SHOULD RETURN15
+          System.out.println(  quickselect( ary , 5 ));// SHOULD RETURN23
+
+          //EVERYTHING WORKS
+
+
+
+        }
+    }
+
+
+
 
 
 
