@@ -57,7 +57,7 @@ public class Quick {
         int[] a = {10,9,8,7,6,};
         quicksort(a);
         System.out.print(Arrays.toString(a));
-        
+
           partition( new int[] {4,3,2,1,0}, 0, 4);
           partition( new int[] {4,3,2,1,0,997,998,999}, 0, 4);
           partition( new int[] {997,998,999,4,3,2,1,0},3,7);
@@ -70,6 +70,15 @@ public class Quick {
           System.out.println(  quickselect( ary , 3 ));// SHOULD RETURN10
           System.out.println(  quickselect( ary , 4 ));// SHOULD RETURN15
           System.out.println(  quickselect( ary , 5 ));// SHOULD RETURN23
+
+
+
+
+          int[] supa = {234,23,423,4,23,43,234,23,423,4,23,4,23,4,23,4,2,42,34,23,4,23,42,34,65,756,7,4,4,534,534,645,7,456,4,563,46,75,745,7,45,74,57,4,5,3,46,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,-1,1,1,11,-1,1,5};
+
+          quicksort(supa);
+
+          System.out.print(Arrays.toString(supa));
 
           //EVERYTHING WORKS
 
