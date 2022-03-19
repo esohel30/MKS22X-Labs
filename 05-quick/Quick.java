@@ -48,12 +48,14 @@ public class Quick {
       partition( new int[] {993,994,995,4,3,2,1,0,997,998,999},3,7);
 
       int[] ary = {2, 10, 15, 23, 0, 5};
-      System.out.println(  quickselect(ary , 0 ));
-      System.out.println(  quickselect( ary , 1 ));
-      System.out.println(  quickselect( ary , 2 ));
-      System.out.println(  quickselect( ary , 3 ));
-      System.out.println(  quickselect( ary , 4 ));
-      System.out.println(  quickselect( ary , 5 )) ;
+      System.out.println(  quickselect(ary , 0 )); // SHOULD RETURN0
+      System.out.println(  quickselect( ary , 1 ));// SHOULD RETURN2
+      System.out.println(  quickselect( ary , 2 ));// SHOULD RETURN5
+      System.out.println(  quickselect( ary , 3 ));// SHOULD RETURN10
+      System.out.println(  quickselect( ary , 4 ));// SHOULD RETURN15
+      System.out.println(  quickselect( ary , 5 ));// SHOULD RETURN23
+
+      //EVERYTHING WORKS
 
 
 
