@@ -2,27 +2,48 @@ import java.util.Arrays;
 
 public class Quick {
 
-    public static void s(int[] data, int a, int b) { //swaps two indexes of an array
+    public static void switc(int[] data, int a, int b){ //switchs two indexes of an array
         int shift = data[a];
         data[a] = data[b];
         data[b] = shift;
     }
 
 
-    public static int partition(int[] data, int lo, int hi) {
-        s(data, (int)(Math.random() * ((hi + 1) - lo) + lo), lo);
-        int piv = lo + 1;
+    public static int partition(int[] data, int start, int end) {
 
-        for (int i = lo + 1; i < hi + 1; i++) {
-            if (data[i] <= data[lo]) {
-                s(data, piv, i);
-                piv++;
-            }
-        }
 
-        s(data, piv - 1, lo);
-        return piv - 1;
-    }
+       switc(data, (int)(Math.random() * ((end + 1) - start) + start), start);
+       int len = data.length - 1;
+       int piv = start;
+       int count = 0;
+
+
+       while (piv < end && piv + 1 != len){
+
+           if (data[piv + 1] < data[piv]) {
+               switc(data, piv + 1, piv);
+               piv++;
+           }
+           else if (data[piv + 1] > data[piv]) {
+               switc(data, piv + 1, end);
+               end--;
+           }
+           else if (data[piv + 1] == data[piv]) {
+               if (count % 2 == 0) {
+                   switc(data, piv, piv + 1);
+                   piv++;
+                   count++;
+               }
+               else {
+                   switc(data, end, piv + 1);
+                   end--;
+                   count++;
+              }
+           }
+       }
+       return piv;
+   }
+
 
     public static int quickselect(int[] arr, int k) {
         return quickselect(arr, k, 0, arr.length - 1);
