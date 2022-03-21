@@ -40,6 +40,12 @@ public class Quick {
               }
            }
        }
+
+       if(data[piv +1] < data[piv]){
+         switc(data,piv + 1, piv);
+         piv++;
+       }
+
        return piv;
    }
 
@@ -69,6 +75,13 @@ public class Quick {
 
     public static void quicksort(int[] data) {
         quicksort(data, 0, data.length - 1);
+    }
+
+
+    public static void main(String[] args) {
+      int[] test = { 43,4,3,4,3,4,34,3,4,3,4,3,4,34,3,4,3,4,34,3,4,3,43,4,3,4,3,43,4,3,4,34,3,4,3,4,3,4,34,3,4,3,4,34,3,4,3,443,53,45,345,3,5,3454,54545445,545454,54545423,34324324, 34};
+      quicksort(test);
+      System.out.print(Arrays.toString(test));
     }
 
 }
