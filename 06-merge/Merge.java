@@ -23,7 +23,7 @@ public class Merge{
         len1 --;
         i--;
       }
-      if(len1 > -1 && len2 > -1 && left[len1] <= right[len2]){
+      if(len2 > -1 && len1 > -1 && left[len1] <= right[len2]){
         temp[i] = right[len2];
         len2 --;
         i--;
@@ -34,7 +34,7 @@ public class Merge{
 
   public static void main(String[] args) {
     int[] x = {1,2,3,4,5,6,7,8,9,10};
-    int[] y = {11,12,13,14,15};
+    int[] y = {0,0,0,0,0,0,0,0,0,0,0,0,11,12,13,14,15,16,17,18,19,2000,2000,2000,2000,2000};
     System.out.println(Arrays.toString(merge(x,y)));
 
 
