@@ -11,7 +11,6 @@ public class Quick {
 
     public static int partition(int[] data, int start, int end) {
 
-
        switc(data, (int)(Math.random() * ((end + 1) - start) + start), start);
        int len = data.length - 1;
        int piv = start;
