@@ -36,7 +36,6 @@ public class Merge{
             }
 
           }
-          System.out.print(Arrays.toString(temp));
           return temp;
         }
 
@@ -48,31 +47,28 @@ public class Merge{
 
 
           int len = data.length;
+          int half = data.length/2;
+          int[] left = new int[half];
+          int[] right = new int[len - half];
 
-          if(len == 1){
-            System.out.print(Arrays.toString(data));
+          if(data.length == 1){
+            return data;
           }
 
-          if(len > 1){
-            int half = data.length/2;
-            int[] left = new int[half];
-            int[] right = new int[len - half];
-            for(int i = 0; i < half; i ++){
-              left[i] = data[i];
-            }
-            for(int j = 0; j < half; j++){
-              right[j] = data[j + half];
-            }
+          if(data.length >1){
 
-            mergesortH(left);
-            mergesortH(right);
-
-
+          for(int i = 0; i < half; i ++){
+            left[i] = data[i];
           }
 
+          for(int j = 0; j < len - half; j++){
+            right[j] = data[j + half];
+          }
 
+        }
 
-          return new int[1]; //so this compiles
+        return merge(mergesortH(left), mergesortH(right));
+
         }
 
         /*mergesort uses the recursive mergesortH method to create a sorted
@@ -80,21 +76,20 @@ public class Merge{
         *array. (This is for compatibility with prior sort testers)
         *@param data the array to be sorted, this will be modified by the method
         */
-        public static void mergesort(int [] data){
-          int [] temp  =  mergesortH(data);
-          for(int i = 0; i < data.length; i++){
-            data[i] = temp[i];
-          }
-        }
+        // public static void mergesort(int [] data){
+        //   int [] temp  =  mergesortH(data);
+        //   for(int i = 0; i < data.length; i++){
+        //     data[i] = temp[i];
+        //   }
+        // }
 
         public static void main(String[] args) {
-          int[] x = {1,2,3,4,5,6,7};
-          int[] y = {1,23,56,78};
+          int[] x = {10,213,123,10,9,8,7,6,5,4,3,2,1};
 
           //System.out.print(Arrays.toString(merge(x,y)));
 
           //System.out.print(len/2);
-          mergesortH(x);
+          System.out.println(Arrays.toString(mergesortH(x)));
         }
 
         }
