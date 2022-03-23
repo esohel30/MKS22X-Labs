@@ -76,15 +76,15 @@ public class Merge{
         *array. (This is for compatibility with prior sort testers)
         *@param data the array to be sorted, this will be modified by the method
         */
-        // public static void mergesort(int [] data){
-        //   int [] temp  =  mergesortH(data);
-        //   for(int i = 0; i < data.length; i++){
-        //     data[i] = temp[i];
-        //   }
-        // }
+        public static void mergesort(int [] data){
+          int [] temp  =  mergesortH(data);
+          for(int i = 0; i < data.length; i++){
+            data[i] = temp[i];
+          }
+        }
 
         public static void main(String[] args) {
-          int[] x = {10,213,123,10,9,8,7,6,5,4,3,2,1};
+          int[] x = {3,1,2,10,1,1,1,1,1};
 
           //System.out.print(Arrays.toString(merge(x,y)));
 
