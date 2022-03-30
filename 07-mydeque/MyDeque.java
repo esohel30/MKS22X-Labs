@@ -108,6 +108,7 @@ public class MyDeque < E > {
         if (element == null) {
             throw new NullPointerException("must enter a value for this method");
         }
+
         changeSize();
         int s = data.length;
         boolean inbounds = true;
@@ -152,6 +153,29 @@ public class MyDeque < E > {
         this.size = size + 1;
     }
 
-  
+    public E getFirst() {
+        if(this.data[this.f] == null && (this.f - this.b == 0) ) {
+         throw new NoSuchElementException("this element does not exist");
+       }
 
+        if (this.f == -1){
+          throw new NoSuchElementException("this element does not exist");
+        }
+
+        return this.data[this.f];
+    }
+
+    public E getLast() {
+        if (this.f == -1){
+          throw new NoSuchElementException("this element does not exist");
+        }
+
+        if ( this.data[f] == null && (this.f - this.b == 0)  ){
+          throw new NoSuchElementException("this element does not exist");
+        }
+
+        return this.data[this.b];
+    }
+
+  
 }
