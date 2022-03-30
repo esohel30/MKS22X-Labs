@@ -43,7 +43,7 @@ public class MyDeque < E > {
 
             int l = temp.length();
             if (front == this.f && swit) {
-              
+
                 // return temp without the additional space and comma
                 return temp.substring(0, l - 2) + "]";
             }
@@ -185,6 +185,7 @@ public class MyDeque < E > {
         if (this.f == -1) {
             throw new NoSuchElementException("this element does not exist");
         }
+        this.size = this.size - 1;
 
         E temp = this.data[this.f];
         // holds value that will be removed
@@ -195,8 +196,6 @@ public class MyDeque < E > {
         if (this.f == l) {
             this.f = this.f - l;
         }
-
-        this.size = this.size - 1;
 
         return temp;
     }
@@ -211,6 +210,7 @@ public class MyDeque < E > {
         if (this.f == -1) {
             throw new NoSuchElementException("this element does not exist");
         }
+        this.size = this.size - 1;
 
         E temp = this.data[this.b];
         // holds value that will be removed
@@ -221,8 +221,6 @@ public class MyDeque < E > {
         if (this.b == -1) {
             this.b = l;
         }
-
-        this.size = this.size - 1;
 
         return temp;
     }

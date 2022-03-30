@@ -6,11 +6,14 @@ public class tester {
     System.out.println(test);
 
 
-    test.addFirst(5);
-    test.addFirst(4);
-    test.addFirst(3);
-    test.addFirst(2);
-    test.addFirst(1);
+    for(int i =0; i < 100; i ++){
+      test.addFirst(100 - i);
+    }
+
+    for(int i =0; i < 50; i ++){
+      test.removeFirst();
+    }
+
 
 
 
