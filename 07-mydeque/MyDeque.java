@@ -31,20 +31,20 @@ public class MyDeque < E > {
     }
 
     public String toString() {
-        String temp = "{";
+        String temp = "[";
         int front = this.f;
         boolean swit = false;
         int len = data.length;
 
         if (this.size == 0) {
-            return temp + "}";
+            return temp + "]";
         }
 
         // keep going until a null pops up
         while (this.data[front] != null) {
 
             if (front == this.f && swit) {
-                return temp + "}";
+                return temp + "]";
             }
 
             //obtains front and palces
@@ -62,9 +62,8 @@ public class MyDeque < E > {
         int l = temp.length();
 
         if (swit) {
-            temp = temp.substring(0, l - 2) + "}";
+            temp = temp.substring(0, l - 2) + "]";
         }
-
         return temp;
     }
 
@@ -103,5 +102,56 @@ public class MyDeque < E > {
     }
 
 
+
+    public void addFirst(E element) {
+
+        if (element == null) {
+            throw new NullPointerException("must enter a value for this method");
+        }
+        changeSize();
+        int s = data.length;
+        boolean inbounds = true;
+
+        if (f == 0) {
+            this.data[s - 1] = element;
+            s--;
+            this.f = s;
+        } else if (this.f == -1) {
+            this.data[this.f + 1] = element;
+            this.f++;
+            this.b++;
+        } else if (this.f != 0 || this.f != -1) {
+            this.data[this.f - 1] = element;
+            this.f = f - 1;
+        }
+        this.size = this.size + 1;
+    }
+
+    public void addLast(E element) {
+
+        if (element == null) {
+            throw new NullPointerException("must enter a value for this method");
+        }
+
+        changeSize();
+        int s = data.length;
+        boolean inbounds = true;
+
+        if (this.b + 1 == s) {
+            this.data[0] = element;
+            this.b--;
+        } else if (this.b == -1 && this.b < s) {
+            this.data[0] = element;
+            this.f++;
+            this.b++;
+        } else if (this.b != -1 || this.b != s - 1) {
+            this.data[this.b + 1] = element;
+            this.b = b + 1;
+        }
+
+        this.size = size + 1;
+    }
+
+  
 
 }
