@@ -3,9 +3,7 @@ import java.util.*;
 public class MyDeque < E > {
 
     public E[] data;
-    public int size,
-    f,
-    b;
+    public int size,f,b;
     // f for front. b for back
 
     public MyDeque() {
@@ -43,8 +41,11 @@ public class MyDeque < E > {
         // keep going until a null pops up
         while (this.data[front] != null) {
 
+            int l = temp.length();
             if (front == this.f && swit) {
-                return temp + "]";
+              
+                // return temp without the additional space and comma
+                return temp.substring(0, l - 2) + "]";
             }
 
             //obtains front and palces
@@ -60,7 +61,6 @@ public class MyDeque < E > {
         }
 
         int l = temp.length();
-
         if (swit) {
             temp = temp.substring(0, l - 2) + "]";
         }
@@ -75,21 +75,19 @@ public class MyDeque < E > {
             @SuppressWarnings("unchecked")
             E[] temp = (E[]) new Object[20];
             data = temp;
-        }
-
-        else if (full) {
+        } else if (full) {
             @SuppressWarnings("unchecked")
             E[] temp = (E[]) new Object[l + l];
 
             temp[0] = data[this.f];
             int counter = 0;
             int counter1 = f;
-            counter ++;
+            counter++;
 
-            for(int j = counter; j < l; j++) {
+            for (int j = counter; j < l; j++) {
                 counter1++;
                 if (counter1 == l) {
-                counter1 = 0;
+                    counter1 = 0;
                 }
                 temp[counter] = this.data[counter1];
                 counter++;
@@ -154,28 +152,79 @@ public class MyDeque < E > {
     }
 
     public E getFirst() {
-        if(this.data[this.f] == null && (this.f - this.b == 0) ) {
-         throw new NoSuchElementException("this element does not exist");
-       }
+        if (this.data[this.f] == null && (this.f - this.b == 0)) {
+            throw new NoSuchElementException("this element does not exist");
+        }
 
-        if (this.f == -1){
-          throw new NoSuchElementException("this element does not exist");
+        if (this.f == -1) {
+            throw new NoSuchElementException("this element does not exist");
         }
 
         return this.data[this.f];
     }
 
     public E getLast() {
-        if (this.f == -1){
-          throw new NoSuchElementException("this element does not exist");
+        if (this.f == -1) {
+            throw new NoSuchElementException("this element does not exist");
         }
 
-        if ( this.data[f] == null && (this.f - this.b == 0)  ){
-          throw new NoSuchElementException("this element does not exist");
+        if (this.data[f] == null && (this.f - this.b == 0)) {
+            throw new NoSuchElementException("this element does not exist");
         }
 
         return this.data[this.b];
     }
 
-  
+    public E removeFirst() {
+        int l = data.length;
+
+        if (this.data[f] == null) {
+            throw new NoSuchElementException("this element does not exist");
+        }
+
+        if (this.f == -1) {
+            throw new NoSuchElementException("this element does not exist");
+        }
+
+        E temp = this.data[this.f];
+        // holds value that will be removed
+
+        data[this.f] = null;
+        this.f = this.f + 1;
+
+        if (this.f == l) {
+            this.f = this.f - l;
+        }
+
+        this.size = this.size - 1;
+
+        return temp;
+    }
+
+    public E removeLast() {
+        int l = data.length - 1;
+
+        if (this.data[b] == null) {
+            throw new NoSuchElementException("this element does not exist");
+        }
+
+        if (this.f == -1) {
+            throw new NoSuchElementException("this element does not exist");
+        }
+
+        E temp = this.data[this.b];
+        // holds value that will be removed
+
+        this.data[b] = null;
+        this.b = this.b - 1;
+
+        if (this.b == -1) {
+            this.b = l;
+        }
+
+        this.size = this.size - 1;
+
+        return temp;
+    }
+
 }

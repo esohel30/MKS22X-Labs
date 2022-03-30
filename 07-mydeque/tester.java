@@ -6,16 +6,13 @@ public class tester {
     System.out.println(test);
 
 
-    test.addFirst(12);
-    System.out.println(test);
+    test.addFirst(5);
+    test.addFirst(4);
+    test.addFirst(3);
+    test.addFirst(2);
+    test.addFirst(1);
 
-    test.addLast(12);
-    test.addFirst(1);
-    test.addFirst(1);
-    test.removeLast();
-    test.addLast(12);
-    test.addLast(12);
-    test.addLast(12);
+
 
 
     System.out.println(test);
