@@ -12,6 +12,11 @@ public class tester {
     test.addLast(12);
     test.addFirst(1);
     test.addFirst(1);
+    test.removeLast();
+    test.addLast(12);
+    test.addLast(12);
+    test.addLast(12);
+
 
     System.out.println(test);
     System.out.println(Arrays.toString(test.data));
