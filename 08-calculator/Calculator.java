@@ -14,13 +14,18 @@ public class Calculator{
       public static double eval(String s){
 
         Scanner x = new Scanner(s);
+        ArrayDeque<Double> data = new ArrayDeque<Double>();
 
         while(x.hasNext()){
-        System.out.println(x.next());
-      }
+          String temp = x.next();
+          if(temp != "+" || temp != "-" || temp != "*" || temp != "/"){
+            data.add(Double.parseDouble(temp));
+          }
 
 
+        }
 
+        System.out.print(data);
         return 1.0;
 
       }
@@ -32,7 +37,10 @@ public class Calculator{
         x.add("hello");
         x.add("hello");
 
-        eval("hello good bye hello good bye ");
+        
+
+        String y = "11 3 - 4 + 2.5 *";
+        eval(y);
 
 
         //System.out.print(x);
