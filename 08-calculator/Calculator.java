@@ -1,7 +1,6 @@
 import java.util.ArrayDeque;
 import java.util.Scanner;
 
-
 public class Calculator{
       /*Evaluate a postfix expression stored in s.
       *Assume valid postfix notation, of ints doubles and operators separated by spaces.
@@ -18,34 +17,48 @@ public class Calculator{
 
         while(x.hasNext()){
           String temp = x.next();
-          if(temp != "+" || temp != "-" || temp != "*" || temp != "/"){
-            data.add(Double.parseDouble(temp));
+
+          if(temp.equals("+")) {
+            Double a = data.removeLast();
+            Double b = data.removeLast();
+            data.add(a + b);
           }
 
+          else if(temp.equals("-")){
+            Double a = data.removeLast();
+            Double b = data.removeLast();
+            data.add(a - b);
+          }
+
+          else if(temp.equals("*")){
+            Double a = data.removeLast();
+            Double b = data.removeLast();
+            data.add(a * b);
+          }
+
+          else if(temp.equals("/")){
+            Double a = data.removeLast();
+            Double b = data.removeLast();
+            data.add(a / b);
+          }
+
+          else{
+            data.add(Double.parseDouble(temp));
+          }
 
         }
 
         System.out.print(data);
+
         return 1.0;
 
       }
 
       public static void main(String[] args) {
-        ArrayDeque<String> x = new ArrayDeque<String>(16);
-        x.add("hello");
-        x.add("hello");
-        x.add("hello");
-        x.add("hello");
 
-        
 
-        String y = "11 3 - 4 + 2.5 *";
+        String y = "1 1 1 5 + + - ";
         eval(y);
-
-
-        //System.out.print(x);
-
-
 
       }
 
