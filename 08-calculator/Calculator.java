@@ -17,48 +17,63 @@ public class Calculator{
 
         while(x.hasNext()){
           String temp = x.next();
+          Double a;
+          Double b;
 
           if(temp.equals("+")) {
-            Double a = data.removeLast();
-            Double b = data.removeLast();
+             checkSize(data);
+             a = data.removeLast();
+             b = data.removeLast();
             data.add(a + b);
           }
 
           else if(temp.equals("-")){
-            Double a = data.removeLast();
-            Double b = data.removeLast();
-            data.add(a - b);
+            checkSize(data);
+             a = data.removeLast();
+             b = data.removeLast();
+            data.add(b - a);
           }
 
           else if(temp.equals("*")){
-            Double a = data.removeLast();
-            Double b = data.removeLast();
+            checkSize(data);
+             a = data.removeLast();
+             b = data.removeLast();
             data.add(a * b);
           }
 
           else if(temp.equals("/")){
-            Double a = data.removeLast();
-            Double b = data.removeLast();
-            data.add(a / b);
+            checkSize(data);
+             a = data.removeLast();
+             b = data.removeLast();
+            data.add(b / a);
           }
 
           else{
             data.add(Double.parseDouble(temp));
           }
-
         }
 
-        System.out.print(data);
+          if(data.size() > 1){
+            throw new IllegalArgumentException("too many operands");
+          }
 
-        return 1.0;
+          return data.getFirst();
+      }
 
+      public static void checkSize(ArrayDeque<Double> x){
+        if(x.size() < 2){
+          throw new IllegalArgumentException("too many operators");
+        }
       }
 
       public static void main(String[] args) {
 
 
-        String y = "1 1 1 5 + + - ";
-        eval(y);
+        System.out.println(eval("11 3 - 4 + 2.5 *")); // is 30.0
+        System.out.println(eval("10 2.0 +")); // is 12
+        System.out.println(eval("8 2 + 99 9 - * 2 + 9 -")); //is 893.0
+        System.out.println(eval("1 2 3 4 5 + * - -")); // is 26.0
+
 
       }
 
