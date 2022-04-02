@@ -1,7 +1,9 @@
+
 import java.util.*;
 
 public class MyDeque < E > {
 
+    @SuppressWarnings("unchecked")
     public E[] data;
     public int size,f,b;
     // f for front. b for back
@@ -57,9 +59,7 @@ public class MyDeque < E > {
             if (front == len) {
                 front = 0;
             }
-
         }
-
         int l = temp.length();
         if (swit) {
             temp = temp.substring(0, l - 2) + "]";
@@ -106,11 +106,9 @@ public class MyDeque < E > {
         if (element == null) {
             throw new NullPointerException("must enter a value for this method");
         }
-
         changeSize();
         int s = data.length;
         boolean inbounds = true;
-
         if (f == 0) {
             this.data[s - 1] = element;
             s--;
@@ -127,51 +125,48 @@ public class MyDeque < E > {
     }
 
     public void addLast(E element) {
-
-        if (element == null) {
-            throw new NullPointerException("must enter a value for this method");
-        }
-
-        changeSize();
-        int s = data.length;
-        boolean inbounds = true;
-
-        if (this.b + 1 == s) {
-            this.data[0] = element;
-            this.b--;
-        } else if (this.b == -1 && this.b < s) {
-            this.data[0] = element;
-            this.f++;
-            this.b++;
-        } else if (this.b != -1 || this.b != s - 1) {
-            this.data[this.b + 1] = element;
-            this.b = b + 1;
-        }
-
-        this.size = size + 1;
+    if (element == null){
+      throw new NullPointerException("must enter a value for this method");
     }
+    changeSize();
+    int s = data.length;
+
+    if (this.b == -1) {
+      this.f = this.b;
+      this.data[0] = element;
+      this.f = this.f - this.b;
+      this.b = this.f;
+    }
+    else if (this.b + 1 == s) {
+      b -= b;
+      data[0] = element;
+    }
+    else {
+      b += 1;
+      data[b] = element;
+    }
+    this.size += 1; // increment size by one because of the added element
+  }
 
     public E getFirst() {
-        if (this.data[this.f] == null && (this.f - this.b == 0)) {
+        boolean temp = this.f == -1;
+        if (this.f - this.b == 0) {
             throw new NoSuchElementException("this element does not exist");
         }
-
-        if (this.f == -1) {
+        if (temp || this.data[this.f] == null) {
             throw new NoSuchElementException("this element does not exist");
         }
-
         return this.data[this.f];
     }
 
     public E getLast() {
+        boolean temp = this.f - this.b == 0;
         if (this.f == -1) {
             throw new NoSuchElementException("this element does not exist");
         }
-
-        if (this.data[f] == null && (this.f - this.b == 0)) {
+        if (this.data[f] == null && temp) {
             throw new NoSuchElementException("this element does not exist");
         }
-
         return this.data[this.b];
     }
 
