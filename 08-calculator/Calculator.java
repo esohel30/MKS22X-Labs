@@ -12,6 +12,10 @@ public class Calculator{
       */
       public static double eval(String s){
 
+        if(s.length() == 0){
+          throw new IllegalArgumentException("too few operands");
+        }
+
         Scanner x = new Scanner(s);
         ArrayDeque<Double> data = new ArrayDeque<Double>();
 
@@ -48,6 +52,13 @@ public class Calculator{
             data.add(b / a);
           }
 
+          else if(temp.equals("%")){
+            checkSize(data);
+             a = data.removeLast();
+             b = data.removeLast();
+             data.add(b % a);
+          }
+
           else{
             data.add(Double.parseDouble(temp));
           }
@@ -56,25 +67,13 @@ public class Calculator{
           if(data.size() > 1){
             throw new IllegalArgumentException("too many operands");
           }
-
           return data.getFirst();
       }
 
       public static void checkSize(ArrayDeque<Double> x){
         if(x.size() < 2){
-          throw new IllegalArgumentException("too many operators");
+          throw new IllegalArgumentException("too few operands");
         }
-      }
-
-      public static void main(String[] args) {
-
-
-        System.out.println(eval("11 3 - 4 + 2.5 *")); // is 30.0
-        System.out.println(eval("10 2.0 +")); // is 12
-        System.out.println(eval("8 2 + 99 9 - * 2 + 9 -")); //is 893.0
-        System.out.println(eval("1 2 3 4 5 + * - -")); // is 26.0
-
-
       }
 
     }
