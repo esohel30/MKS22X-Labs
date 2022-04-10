@@ -180,29 +180,28 @@ public class BurnTrees {
         }
     }
 
+    public static double mean(int N, double d, int s){
+      double counter = 0;
+
+      for (int a=0; a<N; a++){
+        BurnTrees test = new BurnTrees(s,s,d); // haha ssd
+        // average formula == total/number of values
+        // tot is total and N = number of tries
+        int tot = test.run();
+        counter = counter + tot;
+      }
+      double temp =  counter/N;
+      return temp;
+    }
 
 
-    public static void main(String[] args) {
-        int WIDTH = 20;
-        int HEIGHT = 30;
-        int DELAY = 200;
-        double DENSITY = .7;
-        if (args.length > 1) {
-            WIDTH = Integer.parseInt(args[0]);
-            HEIGHT = Integer.parseInt(args[1]);
-            DENSITY = Double.parseDouble(args[2]);
-        }
-        if (args.length > 3) {
-            DELAY = Integer.parseInt(args[3]);
-        }
-        BurnTrees b = new BurnTrees(WIDTH, HEIGHT, DENSITY);
 
+    public static void main(String[]args){
+      if(args.length ==0){
+        int size = 500;
+        int reps = 100;
 
-        int ans = b.animate(DELAY); //animate all screens
-        System.out.println(ans); //print the final answer
-
-        //int ans = b.outputAll();//print all screens one after another
-        //System.out.println(ans);//print the final answer
+        
     }
 
 
