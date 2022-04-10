@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.ArrayDeque;
 public class BurnTrees{
   private int[][]map;
   private int ticks;
@@ -6,6 +7,7 @@ public class BurnTrees{
   private static final int FIRE = 1;
   private static final int ASH = 3;
   private static final int SPACE = 0;
+  private ArrayDeque<int[]> frontier;
 
 
   /*Determine if the simulation is still burning
@@ -15,7 +17,8 @@ public class BurnTrees{
     //YOU MUST IMPLEMENT THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
     //HINT: do not check the board for fire which is an n^2 operation
-    return false;//placeholder for compilation purposes
+    //placeholder for compilation purposes
+    return frontier.size() == 0;
   }
 
 
