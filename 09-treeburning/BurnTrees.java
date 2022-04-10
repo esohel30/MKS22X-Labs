@@ -229,7 +229,7 @@ public class BurnTrees {
 
             System.out.println("Density                Time to burn");
 
-            for (double rangeDensity = 0.55; rangeDensity < 0.67; rangeDensity += 0.01) {
+            for (double rangeDensity = 0.56; rangeDensity < 0.67; rangeDensity += 0.01) {
                 double mean = mean(repetitions, rangeDensity, boardSize);
                 System.out.print((double)(Math.round((rangeDensity * 100))) / 100);
                 System.out.println("                      " + mean);
