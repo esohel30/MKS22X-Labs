@@ -34,7 +34,7 @@ public class BurnTrees {
             int col = 0;
 
             //right
-            if (inB(spread[0] + 1)) {
+            if (inB(spread[0] + 1, "right")) {
                 if (isT("right", map, spread)) {
                     FireT("right", map, spread);
                     temp.add(new int[] {
@@ -43,7 +43,7 @@ public class BurnTrees {
                 }
             }
             //left
-            if (inB(spread[0] - 1)) {
+            if (inB(spread[0] - 1, "left")) {
                 if (isT("left", map, spread)) {
                     FireT("left", map, spread);
                     temp.add(new int[] {
@@ -52,7 +52,7 @@ public class BurnTrees {
                 }
             }
             //up
-            if (inB(spread[1] + 1)) {
+            if (inB(spread[1] + 1, "up")) {
                 if (isT("up", map, spread)) {
                     FireT("up", map, spread);
                     temp.add(new int[] {
@@ -61,7 +61,7 @@ public class BurnTrees {
                 }
             }
             //down
-            if (inB(spread[1] - 1)) {
+            if (inB(spread[1] - 1, "down")) {
                 if (isT("down", map, spread)) {
                     FireT("down", map, spread);
                     temp.add(new int[] {
@@ -77,8 +77,13 @@ public class BurnTrees {
 
     //helper method that checks if the fires are inbound
 
-    public boolean inB(int index) {
-        return (index >= 0 && index < map.length);
+    public boolean inB(int index, String dir) {
+        if (dir.equals("left") || dir.equals("down") || dir.equals("right")) {
+            return (index >= 0 && index < map.length);
+        } else if (dir.equals("up")) {
+            return (index >= 0 && index < map[0].length);
+        }
+        return false;
     }
 
     //helper method that checks for up down left right and if they are trees that are burnable
@@ -148,12 +153,12 @@ public class BurnTrees {
     }
 
     public BurnTrees(int width, int height, double density) {
-        map = new int[height][width];
         frontier = new ArrayDeque < > ();
+        map = new int[height][width];
         for (int r = 0; r < map.length; r++)
             for (int c = 0; c < map[r].length; c++)
                 if (Math.random() < density)
-                    map[r][c] = 2;
+                    map[r][c] = TREE;
         start(); //set the left column on fire.
     }
 
@@ -166,7 +171,11 @@ public class BurnTrees {
         for (int i = 0; i < map.length; i++) {
             if (map[i][0] == TREE) {
                 map[i][0] = FIRE;
-                frontier.add(new int[] {i,0} );
+                int[] temp = new int[] {
+                    i,
+                    0
+                };
+                frontier.add(temp);
             }
         }
     }
@@ -175,7 +184,7 @@ public class BurnTrees {
 
     public static void main(String[] args) {
         int WIDTH = 20;
-        int HEIGHT = 20;
+        int HEIGHT = 30;
         int DELAY = 200;
         double DENSITY = .7;
         if (args.length > 1) {
