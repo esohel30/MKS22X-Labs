@@ -71,7 +71,37 @@ public class BurnTrees {
         return false;
     }
 
-  
+    public void FireT(String Direction, int[][]
+        var, int[] temp) {
+        //up
+        //tree is 2
+        int row;
+        int col;
+
+        if (Direction.equals("up")) {
+            row = temp[0];
+            col = temp[1] + 1;
+            var [row][col] = FIRE;
+        }
+        //down
+        if (Direction.equals("down")) {
+            row = temp[0];
+            col = temp[1] - 1;
+            var [row][col] = FIRE;
+
+        }
+        if (Direction.equals("right")) {
+            row = temp[0] + 1;
+            col = temp[1];
+            var [row][col] = FIRE;
+        }
+        if (Direction.equals("left")) {
+            row = temp[0] - 1;
+            col = temp[1];
+            var [row][col] = FIRE;
+        }
+
+    }
 
     public BurnTrees(int width, int height, double density) {
         map = new int[height][width];
