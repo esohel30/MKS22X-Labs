@@ -180,83 +180,83 @@ public class BurnTrees {
         }
     }
 
-    public static double mean(int N, double d, int s){
-      double counter = 0;
+    public static double mean(int N, double d, int s) {
+        double counter = 0;
 
-      for (int a=0; a<N; a++){
-        BurnTrees test = new BurnTrees(s,s,d); // haha ssd
-        // average formula == total/number of values
-        // tot is total and N = number of tries
-        int tot = test.run();
-        counter = counter + tot;
-      }
-      double temp =  counter/N;
-      return temp;
+        for (int a = 0; a < N; a++) {
+            BurnTrees test = new BurnTrees(s, s, d); // haha ssd
+            // average formula == total/number of values
+            // tot is total and N = number of tries
+            int tot = test.run();
+            counter = counter + tot;
+        }
+        double temp = counter / N;
+        return temp;
     }
 
 
 
-    public static void main(String[]args){
-      if(args.length ==0){
-        int repetitions = 100;
-        int boardSize = 450;
-        int counter =0; // this variable is used to print the data in a straight line
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            int repetitions = 100;
+            int boardSize = 450;
+            int counter = 0; // this variable is used to print the data in a straight line
 
-        System.out.println("Averages are calculated using a Board Size of 450 and 100 repetitions  \n");
-        System.out.println("*******************************************");
-        System.out.println("Density increases with 5% increments \n");
-        System.out.println("Density                Time to burn");
+            System.out.println("Averages are calculated using a Board Size of 450 and 100 repetitions  \n");
+            System.out.println("*******************************************");
+            System.out.println("Density increases with 5% increments \n");
+            System.out.println("Density                Time to burn");
 
 
-        for(double density = 0.05; density < 1; density += 0.05) {
-          counter ++;
-          double mean = mean(repetitions,density,boardSize);
-          System.out.print((double)(Math.round((density*100)))/100);
+            for (double density = 0.05; density < 1; density += 0.05) {
+                counter++;
+                double mean = mean(repetitions, density, boardSize);
+                System.out.print((double)(Math.round((density * 100))) / 100);
 
-          //used to print nicely
-          if(counter % 2 == 0){
-          System.out.println("                      " + mean);
-          }
-          if(counter % 2 == 1){
-            System.out.println("                     " + mean); // has one more space for odd ones
-          }
+                //used to print nicely
+                if (counter % 2 == 0) {
+                    System.out.println("                      " + mean);
+                }
+                if (counter % 2 == 1) {
+                    System.out.println("                     " + mean); // has one more space for odd ones
+                }
 
+            }
+
+            System.out.println("\n********************************************");
+
+            System.out.println("Density increases with 1% increments in specified range\n");
+
+            System.out.println("Density                Time to burn");
+
+            for (double rangeDensity = 0.55; rangeDensity < 0.67; rangeDensity += 0.01) {
+                double mean = mean(repetitions, rangeDensity, boardSize);
+                System.out.print((double)(Math.round((rangeDensity * 100))) / 100);
+                System.out.println("                      " + mean);
+            }
+            System.out.println("\n********************************************");
+        } else {
+            //mr k main given
+            int WIDTH = 20;
+            int HEIGHT = 20;
+            int DELAY = 200;
+            double DENSITY = .7;
+            if (args.length > 0) {
+                WIDTH = Integer.parseInt(args[0]);
+                HEIGHT = Integer.parseInt(args[1]);
+                DENSITY = Double.parseDouble(args[2]);
+            }
+            if (args.length > 3) {
+                DELAY = Integer.parseInt(args[3]);
+            }
+            BurnTrees b = new BurnTrees(WIDTH, HEIGHT, DENSITY);
+
+            int ans = b.animate(DELAY); //animate all screens
+            System.out.println(ans); //print the final answer
+
+            //    int ans = b.outputAll();//print all screens one after another
+            //    System.out.println(ans);//print the final answer
         }
-
-        System.out.println("\n********************************************");
-
-        System.out.println("Density increases with 1% increments in specified range\n");
-
-        System.out.println("Density                Time to burn");
-
-      for(double rangeDensity = 0.55; rangeDensity < 0.67; rangeDensity += 0.01){
-          double mean = mean(repetitions,rangeDensity,boardSize);
-          System.out.print((double)(Math.round((rangeDensity*100)))/100);
-          System.out.println("                      " +mean);
-        }
-        System.out.println("\n********************************************");
-      }
-
-      else {
-        int WIDTH = 20;
-        int HEIGHT = 20;
-        int DELAY = 200;
-        double DENSITY = .7;
-        if (args.length > 0) {
-          WIDTH = Integer.parseInt(args[0]);
-          HEIGHT = Integer.parseInt(args[1]);
-          DENSITY = Double.parseDouble(args[2]);
-        }
-        if (args.length > 3) {
-          DELAY = Integer.parseInt(args[3]);
-        }
-        BurnTrees b = new BurnTrees(WIDTH, HEIGHT, DENSITY);
-
-      int ans = b.animate(DELAY);//animate all screens
-      System.out.println(ans);//print the final answer
-  //    int ans = b.outputAll();//print all screens one after another
-  //    System.out.println(ans);//print the final answer
-      }
     }
 
 
