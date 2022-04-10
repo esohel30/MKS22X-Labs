@@ -27,7 +27,51 @@ public class BurnTrees {
         ArrayDeque < int[] > temp = new ArrayDeque < > ();
         ticks++;
 
+        while (frontier.size() != 0 || frontier.size() < 0) {
+            int[] spread = frontier.remove();
+            map[spread[0]][spread[1]] = ASH;
+            int row = 0;
+            int col = 0;
 
+            //right
+            if (inB(spread[0] + 1)) {
+                if (isT("right", map, spread)) {
+                    FireT("right", map, spread);
+                    temp.add(new int[] {
+                        spread[0] + 1, spread[1]
+                    });
+                }
+            }
+            //left
+            if (inB(spread[0] - 1)) {
+                if (isT("left", map, spread)) {
+                    FireT("left", map, spread);
+                    temp.add(new int[] {
+                        spread[0] - 1, spread[1]
+                    });
+                }
+            }
+            //up
+            if (inB(spread[1] + 1)) {
+                if (isT("up", map, spread)) {
+                    FireT("up", map, spread);
+                    temp.add(new int[] {
+                        spread[0], spread[1] + 1
+                    });
+                }
+            }
+            //down
+            if (inB(spread[1] - 1)) {
+                if (isT("down", map, spread)) {
+                    FireT("down", map, spread);
+                    temp.add(new int[] {
+                        spread[0], spread[1] - 1
+                    });
+                }
+            }
+        }
+
+        frontier = temp;
     }
 
 
