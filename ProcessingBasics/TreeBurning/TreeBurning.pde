@@ -17,8 +17,8 @@
      *At this point you have initialized width, height,ROWS,COLS. You can change these values
      *to alter the screen size, but you cannot just change one value!
      *What must be true about the ratio of these values in order for this simulation to display squares?
-     *ANSWER HERE: The width/ rows should equal to height/ cols. 
-     */
+     *ANSWER HERE: The width/ rows should equal to height/ cols. So basically the ratio between the height and the cols should be the same ratio for width and rows
+     */ 
 
     DENSITY = .61;
     treeSim = new BurnTrees(ROWS, COLS, DENSITY);
@@ -30,7 +30,7 @@
      the expression would be squareSize = height / col or width / row. 
      */ 
      
-    SQUARESIZE = 8;//side length
+    SQUARESIZE = width/COLS; //side length
 
   }
 
@@ -42,6 +42,7 @@
       treeSim.tick();
         System.out.println("Testing code:"+ frameCount);
     }
+    
     /**question 3 *********************************
      *Here we only call tick() when the frameCount % 10 == 0.
      *Why do we do this?
