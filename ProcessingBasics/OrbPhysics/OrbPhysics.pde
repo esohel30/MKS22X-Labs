@@ -24,6 +24,7 @@
         fill(c);
         noStroke();
         ellipse(x,y, radius * 2, radius * 2);
+        
       }
 
       void move(){
@@ -56,12 +57,41 @@
                 
 
       }
+      
+      
+      void attract(){ 
+
+        
+        x = x + xSpeed;
+        y = y + ySpeed;
+
+        
+        if(x + radius >= width || x <= radius){
+          xSpeed = xSpeed * -1;
+        }
+        if(y + radius >= height || y <= radius){
+          ySpeed = ySpeed * -1;
+        }
+        
+        float temp = height - radius;
+
+        if(y - temp > 0) y = temp;
+        if(y - radius < 0) y = radius;
+               
+
+        
+        
+        
+      } 
+      
     }
     
     ArrayList<Orb>orbList;
     void setup() {
       size(1000, 700);
       orbList = new ArrayList<Orb>();
+      orbList.add(new Orb(500, 350, 0, 0, 5));
+
     }
     void mouseClicked() {
       //add a new Orb to the orbList, constructed as follows:
@@ -73,7 +103,7 @@
     void draw() {
       background(255);
       for (Orb o : orbList) {
-        o.move();
+        o.attract();
         o.display();
       }
       fill(0);
