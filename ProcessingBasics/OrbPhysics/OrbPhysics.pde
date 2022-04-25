@@ -25,9 +25,29 @@
         ellipse(x,y, radius * 2, radius * 2);
       }
 
-  
-                
+      void move(){
+        //PART 2
+        //change the x based on the xSpeed
+        x = x + xSpeed;
+        //change the y based on the ySpeed
+        y = y + ySpeed;
 
+        //PART 3
+        //Change the speed when you collide with the end of the screen (all 4 sides)
+        if(x + radius >= width || x <= radius){
+          xSpeed = xSpeed * -1;
+        }
+        if(y + radius >= height || y <= radius){
+          ySpeed = ySpeed * -1;
+        }
+        float temp = height - radius;
+
+        if(y - temp > 0) y = temp;
+        if(y - radius < 0) y = radius;
+               
+        
+       
+   
       }
     }
     
