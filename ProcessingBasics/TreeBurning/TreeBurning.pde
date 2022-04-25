@@ -38,7 +38,7 @@
   void draw() {
     background(0);
     //frameCount tells you how many times the draw method was called.
-    if (frameCount % 100 == 0) {
+    if (frameCount % 10 == 0) {
       treeSim.tick();
         System.out.println("Testing code:"+ frameCount);
     }
@@ -73,8 +73,8 @@
      *We can easily reset the simulation by clicking the mouse.
      *Please use the same values that it was initialized with in the setup.
      * ANSWER: UPDATE THE NEXT LINE
-     */
-    treeSim = null;
+       */
+    treeSim = new BurnTrees(ROWS, COLS, DENSITY);
   }
 
 
@@ -85,14 +85,25 @@
    *              e.g. [ "@ @@","@@@ "," @ @"] for a ROWS=3, COLS=4 board.
    *ANSWER: Complete this method.
    */
-  void stringToSquares(String[]lines) {
-    /**Complete this method.
-     *1. Break up your screen by drawing ROWSxCOLS squares of the same color.
-     *2. Decide how to fill them in using the String[] parameter
-     *   Colors: Fire = RED, Tree = GREEN, SPACE = WHITE, ASH = GREY
-     */
-
+ void stringToSquares(String[]lines) {
+  for (int row = 0; row < ROWS; row++){
+    for (int col = 0; col < COLS; col++){
+      
+      char temp = lines[row].charAt(col); 
+      if (temp == 'w'){
+        fill(255,0,0);
+      } else if (temp == ' '){
+        fill(255,255,255);
+      } else if (temp == '.'){
+        fill(192,192,192);
+      } else {
+        fill(0,225,0);
+      }
+      rect(col * SQUARESIZE, row * SQUARESIZE, SQUARESIZE, SQUARESIZE);
+    }
   }
+ }
+
 
 
   /***THIS IS YOUR PRIOR LAB (only a subset of methods)***/
