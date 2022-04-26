@@ -88,10 +88,8 @@
     
     ArrayList<Orb>orbList;
     void setup() {
-      size(1000, 700);
+      size(1000, 800);
       orbList = new ArrayList<Orb>();
-      orbList.add(new Orb(500, 350, 0, 0, 5));
-
     }
     void mouseClicked() {
       //add a new Orb to the orbList, constructed as follows:
@@ -102,6 +100,7 @@
     }
     void draw() {
       background(255);
+      circle(500,400,10);
       for (Orb o : orbList) {
         o.attract();
         o.display();
