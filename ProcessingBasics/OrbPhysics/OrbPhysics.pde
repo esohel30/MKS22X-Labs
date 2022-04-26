@@ -54,8 +54,7 @@
         //You don't need a variable for this if every object experiences the same
         //gravitational constant (find the value that looks nice experimentally, 9.8 will not work well).
         ySpeed += 0.19;
-                
-
+             
       }
       
       
@@ -63,8 +62,9 @@
 
         
         x = x + xSpeed;
-        y = y + ySpeed;
-
+        xSpeed += Math.abs(x-500)/ dist(x,y,500,400);
+        y= y + ySpeed;
+        ySpeed += Math.abs(y-400)/ dist(x,y,500,400);
         
         if(x + radius >= width || x <= radius){
           xSpeed = xSpeed * -1;
