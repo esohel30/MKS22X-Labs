@@ -61,10 +61,10 @@
       void attract(){ 
 
         
-        x = x + xSpeed;
-        xSpeed += Math.abs(x-500)/ dist(x,y,500,400);
-        y= y + ySpeed;
-        ySpeed += Math.abs(y-400)/ dist(x,y,500,400);
+        x += xSpeed;
+        xSpeed += (500-x)/ dist(x,y,500,400);
+        y += ySpeed;
+        ySpeed += (400-y)/ dist(x,y,500,400);
         
         if(x + radius >= width || x <= radius){
           xSpeed = xSpeed * -1;
@@ -72,16 +72,9 @@
         if(y + radius >= height || y <= radius){
           ySpeed = ySpeed * -1;
         }
-        
-        float temp = height - radius;
+          float temp = height - radius;
 
-        if(y - temp > 0) y = temp;
-        if(y - radius < 0) y = radius;
-               
 
-        
-        
-        
       } 
       
     }
@@ -96,8 +89,21 @@
       //The x and y positions are the same as the mouse
       //the radius should be between in the range [20.0,70.0)
       //the xSpeed and ySpeed should be in the range [-3.0,3.0)
-      orbList.add(new Orb(mouseX, mouseY, random(-3,3), random(-3,3), random(20,70)));
+      orbList.add(new Orb(mouseX, mouseY, 5, 0, 20));
     }
+    
+    void keyPressed(){
+      if(key == BACKSPACE){ 
+          orbList.clear();
+      } 
+      
+    }
+    
+    
+    
+    
+    
+    
     void draw() {
       background(255);
       circle(500,400,10);
