@@ -1,119 +1,181 @@
-     public class Orb{
-      float x,y;
-      float xSpeed,ySpeed;
-      float radius;
-      color c;
+ArrayList < Orb > orbs;
 
-      public Orb(float x_,float y_,float xSpeed_, float ySpeed_, float radius_ ){
+boolean background = true;
+final int BOUNCE = 0;
+final int ORBIT = 1;
+final int SPRING = 2;
+final float SPRING_LENGTH = 140;
+final float SPRING_DAMPEN = 0.899;
+final float SPRING_CONSTANT = 0.020;
+boolean gravitySwitch = true;
+Orb middle;
+int MODE = SPRING - 2; 
+
+void setup() {
+    size(1000, 800);
+    orbs = new ArrayList < Orb > ();
+    middle = new Orb(500, 400, 0, 0, 10);
+}
+
+void mouseClicked() {
+    Orb test = new Orb(mouseX, mouseY, 5, 0, 20);
+    orbs.add(test);
+}
+
+void draw() {
+    if (background) {
+        background(255);
+    }
+    
+    if(background == false) {
+        fill(255);
+        rect(0, 0, 150, 110);
+    }
+      middle.display();
+
+    
+    for (Orb tester: orbs) {
+        tester.move();
+        
+        if (gravitySwitch == true) {
+            tester.ySpeed += 0.15;
+        }
+        else if (MODE == ORBIT) {
+            middle.attract(tester);
+        } 
+        else if (MODE == BOUNCE) {
+            tester.bounce();
+        } 
+        else if (MODE == SPRING){
+            middle.attractSpring(tester);
+        }
+        
+        tester.display();
+    }
+    
+    fill(0);
+    text(frameRate, 20, 20);
+    text(orbs.size(), 20, 40);
+    
+    if (MODE == 0) text("MODE: GRAVITY", 20, 60);
+    else if (MODE == 1) text("MODE: ORBIT", 20, 60);
+    else  if (MODE == 2) text("MODE: SPRING", 20, 60);
+ 
+   
+    if (gravitySwitch) {
+        text("GRAVITY: ON", 20, 80);
+    } 
+    else if (!gravitySwitch){
+        text("GRAVITY: OFF", 20, 80);
+    }
+    
+    if (background) {
+        text("BACKGROUND: On", 20, 100);
+    } 
+    if(!background) {
+        text("BACKGROUND: Off", 20, 100);
+    }
+}
+
+void keyPressed() {
+    if (key == BACKSPACE) orbs.clear();
+    // space key 
+    if (key == ' ') {
+        MODE += 1; 
+        if(MODE >2){ 
+            MODE = 0; 
+         } 
+    }
+     // second key
+    if (key == 'b') {
+            background = !background;
+     } 
+    // last one 
+    if (key == 'g') {
+        gravitySwitch = !gravitySwitch; 
+    }
+}
+
+
+
+public class Orb {
+    float x, y;
+    float xSpeed, ySpeed;
+    float radius;
+    color c;
+
+    public Orb(float x_, float y_, float xSpeed_, float ySpeed_, float radius_) {
         x = x_;
         y = y_;
         xSpeed = xSpeed_;
         ySpeed = ySpeed_;
         radius = radius_;
-        //random color... why not.
-        c = color(random(255),random(255),random(255));
-      }
+        c = color(random(255), random(255), random(255));
+    }
 
-
-      void display(){
-        //Part 1:
-        //draw a ellipse at the x,y position, with the correct radius.
-        //make sure it is the correct color
-        //make sure you read the parameters of ellipse, so that you have the correct size.
-        //radius is NOT one of the parameters of ellipse by default.
+    void display() {
         fill(c);
-        noStroke();
-        ellipse(x,y, radius * 2, radius * 2);
-        
-      }
+        //noStroke();
+        circle(x, y, radius * 2);
+        float temp = 5 * xSpeed; 
+        float temp2 = 5 * ySpeed; 
+        line(x, y, x + (temp), y + (temp2));
+    }
 
-      void move(){
-        //PART 2
-        //change the x based on the xSpeed
-        x = x + xSpeed;
-        //change the y based on the ySpeed
-        y = y + ySpeed;
-
-        //PART 3
-        //Change the speed when you collide with the end of the screen (all 4 sides)
-        if(x + radius >= width || x <= radius){
-          xSpeed = xSpeed * -1;
-        }
-        if(y + radius >= height || y <= radius){
-          ySpeed = ySpeed * -1;
-        }
-        float temp = height - radius;
-
-        if(y - temp > 0) y = temp;
-        if(y - radius < 0) y = radius;
-               
-        
-       
-        //Part 4
-        //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
-        //You don't need a variable for this if every object experiences the same
-        //gravitational constant (find the value that looks nice experimentally, 9.8 will not work well).
-        ySpeed += 0.19;
-             
-      }
+    void gravity() {
+      float diff = width - radius; 
+      float diff2 = height - radius; 
       
+      if(x >= diff || x <= radius){ 
+        xSpeed *= -1; 
+      } 
+      if(y >= diff2 || y <= radius){ 
+        ySpeed *= -1; 
+      } 
       
-      void attract(){ 
+      float temp = height - radius; 
+      if(y > temp) {
+        y = temp;
+      }
+      float temp2 = radius; 
+      if( y < temp2){ 
+        y = temp2;
+      } 
+ 
+    }
 
-        
+    void move() {
         x += xSpeed;
-        xSpeed += (500-x)/ dist(x,y,500,400);
         y += ySpeed;
-        ySpeed += (400-y)/ dist(x,y,500,400);
+    }
+
+    void bounce() {
+        if (x >= width - radius || x <= radius) {
+            xSpeed *= -1;
+        }
+        if (y >= height - radius || y <= radius) {
+            ySpeed *= -1;
+        }
+    }
+
+    void attract(Orb orb2) {
+        float distanceEach = dist(orb2.x, orb2.y, x, y);
         
-        if(x + radius >= width || x <= radius){
-          xSpeed = xSpeed * -1;
+        if (distanceEach != 0) {
+            double temp = Math.pow(distanceEach, 2); 
+            orb2.ySpeed += 20 * (y - orb2.y) / (temp);
+            orb2.xSpeed += 20 * (x - orb2.x) / (temp);
         }
-        if(y + radius >= height || y <= radius){
-          ySpeed = ySpeed * -1;
-        }
-          float temp = height - radius;
+    }
 
+    void attractSpring(Orb orb2) {
+        float distance = dist(x, y, orb2.x, orb2.y);
+        float force = (distance - SPRING_LENGTH) * SPRING_CONSTANT;
+        
+        orb2.xSpeed += (force * (x - orb2.x)) / (distance);
+        orb2.ySpeed += (force * (y - orb2.y)) / (distance);
+        orb2.xSpeed = orb2.xSpeed * SPRING_DAMPEN;
+        orb2.ySpeed = orb2.ySpeed * SPRING_DAMPEN;
 
-      } 
-      
     }
-    
-    ArrayList<Orb>orbList;
-    void setup() {
-      size(1000, 800);
-      orbList = new ArrayList<Orb>();
-    }
-    void mouseClicked() {
-      //add a new Orb to the orbList, constructed as follows:
-      //The x and y positions are the same as the mouse
-      //the radius should be between in the range [20.0,70.0)
-      //the xSpeed and ySpeed should be in the range [-3.0,3.0)
-      orbList.add(new Orb(mouseX, mouseY, 5, 0, 20));
-    }
-    
-    void keyPressed(){
-      if(key == BACKSPACE){ 
-          orbList.clear();
-      } 
-      
-    }
-    
-    
-    
-    
-    
-    
-    void draw() {
-      background(255);
-      circle(500,400,10);
-      for (Orb o : orbList) {
-        o.attract();
-        o.display();
-      }
-      fill(0);
-      text(frameRate,20,20);
-      text(orbList.size(),20,40);
-    }
-    
-    
+}
