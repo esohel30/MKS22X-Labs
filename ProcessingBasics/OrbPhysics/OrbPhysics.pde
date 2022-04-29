@@ -118,7 +118,7 @@ public class Orb {
         line(x, y, x + (temp), y + (temp2));
     }
 
-    void gravity() {
+    void bounce() {
         float diff = width - radius;
         float diff2 = height - radius;
 
@@ -145,14 +145,6 @@ public class Orb {
         y += dy;
     }
 
-    void bounce() {
-        if (x >= width - radius || x <= radius) {
-            dx *= -1;
-        }
-        if (y >= height - radius || y <= radius) {
-            dy *= -1;
-        }
-    }
 
     void attract(Orb orb2) {
         float distanceEach = dist(orb2.x, orb2.y, x, y);
