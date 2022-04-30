@@ -5,8 +5,9 @@ final int BOUNCE = 0;
 final int ORBIT = 1;
 final int SPRING = 2;
 final float SPRING_LENGTH = 140;
-final float SPRING_DAMPEN = 0.899;
-final float SPRING_CONSTANT = 0.020;
+final float SPRING_DAMPEN = 0.99;
+final float SPRING_CONSTANT = 0.05;
+
 boolean gravitySwitch = true;
 Orb middle;
 int MODE = SPRING - 2;
@@ -14,7 +15,7 @@ int MODE = SPRING - 2;
 void setup() {
     size(1000, 800);
     orbs = new ArrayList < Orb > ();
-    middle = new Orb(500, 400, 0, 0, 10);
+    middle = new Orb(500, 400, 0, 0, 10.0);
 }
 
 void mouseClicked() {
@@ -39,11 +40,14 @@ void draw() {
 
         if (gravitySwitch == true) {
             tester.dy += 0.15;
-        } else if (MODE == ORBIT) {
+        }
+        if (MODE == 1) {
             middle.attract(tester);
-        } else if (MODE == BOUNCE) {
+        } 
+        else if (MODE == 0) {
             tester.bounce();
-        } else if (MODE == SPRING) {
+        } 
+        else if (MODE == 2) {
             middle.attractSpring(tester);
         }
 
@@ -54,22 +58,22 @@ void draw() {
     text(frameRate, 20, 20);
     text(orbs.size(), 20, 40);
 
-    if (MODE == 0) text("MODE: GRAVITY", 20, 60);
-    else if (MODE == 1) text("MODE: ORBIT", 20, 60);
-    else if (MODE == 2) text("MODE: SPRING", 20, 60);
+    if (MODE == 0) text("MODE: GRAVITY", 21, 61);
+    else if (MODE == 1) text("MODE: ORBIT", 21, 61);
+    else if (MODE == 2) text("MODE: SPRING", 21, 61);
 
 
     if (gravitySwitch) {
-        text("GRAVITY: ON", 20, 80);
+        text("GRAVITY: ON", 21, 81);
     } else if (!gravitySwitch) {
-        text("GRAVITY: OFF", 20, 80);
+        text("GRAVITY: OFF", 21, 81);
     }
 
     if (background) {
-        text("BACKGROUND: On", 20, 100);
+        text("BACKGROUND: On", 21, 101);
     }
     if (!background) {
-        text("BACKGROUND: Off", 20, 100);
+        text("BACKGROUND: Off", 21, 101);
     }
 }
 
@@ -147,9 +151,10 @@ public class Orb {
 
 
     void attract(Orb orb2) {
+        
         float distanceEach = dist(orb2.x, orb2.y, x, y);
-
-        if (distanceEach != 0) {
+        boolean stat = distanceEach ==0;
+        if (!stat) {
             double temp = Math.pow(distanceEach, 2);
             orb2.dy += 20 * (y - orb2.y) / (temp);
             orb2.dx += 20 * (x - orb2.x) / (temp);
@@ -157,13 +162,10 @@ public class Orb {
     }
 
     void attractSpring(Orb orb2) {
-        float distance = dist(x, y, orb2.x, orb2.y);
-        float force = (distance - SPRING_LENGTH) * SPRING_CONSTANT;
-
-        orb2.dx += (force * (x - orb2.x)) / (distance);
-        orb2.dy += (force * (y - orb2.y)) / (distance);
+        float distancefrom = dist(x, y, orb2.x, orb2.y);
+        orb2.dx += ((distancefrom - SPRING_LENGTH) * SPRING_CONSTANT * (x - orb2.x)) / (distancefrom);
         orb2.dx = orb2.dx * SPRING_DAMPEN;
+        orb2.dy += ((distancefrom - SPRING_LENGTH) * SPRING_CONSTANT * (y - orb2.y)) / (distancefrom);
         orb2.dy = orb2.dy * SPRING_DAMPEN;
-
     }
 }
