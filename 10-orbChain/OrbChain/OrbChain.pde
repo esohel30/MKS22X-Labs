@@ -4,11 +4,14 @@
       final static float SPRING_CONSTANT = 0.015;
       final static int MODE = SPRING;
       
+      
+      // this is the main program 
       OrbList orbs;
       void setup() {
         size(1000, 800);
         orbs = new OrbList();
       }
+      
       void mouseClicked() {
         orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
       }
@@ -18,7 +21,10 @@
         orbs.display();
       }
       
+      
       // work starts here 
+      // an orb node is a singular ball or "node" of the linked list. 
+      // should watch video on linked lists. 
       
       
       public class OrbNode {
