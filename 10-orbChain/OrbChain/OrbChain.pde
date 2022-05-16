@@ -137,19 +137,19 @@
        *process all nodes by running move.
        */
       void processAll() {
-          OrbNode c = first;
           //advance current to next until it is null, move() each of the nodes
-          while(c != null){ 
+          for(OrbNode c = first; c != null; c = c.next){
             c.move();
-            c = c.next;
           }
       }
+      
       /**
        *complete this method
        *Display all nodes by running their display().
        */
       void display() {
-          OrbNode current = first;
-          //advance current to next until it is null, display() each of the nodes
+          for(OrbNode c = first; c != null; c = c.next){
+            c.display();
+          }
       }
   }
