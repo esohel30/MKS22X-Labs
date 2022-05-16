@@ -19,10 +19,13 @@
       orbs.processAll();
       orbs.display();
       
-      text( "spring constant: " + S_C, 20, 20); 
-      text( "spring dampen: " + S_D, 20, 40); 
-      text( "spring length: " + S_L, 20, 60); 
-
+      
+      // code to display test, representing values. 
+      text( "spring length: " + S_L, 19, 59); 
+      text( "gravity: " + g, 19, 79);
+      text( "spring constant: " + S_C, 19, 19); 
+      text( "spring dampen: " + S_D, 19, 39); 
+  
       
   }
 
