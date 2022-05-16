@@ -27,40 +27,40 @@
        text("spring dampen: " + S_D, 19, 39);
    }
 
-   void keypressed() {
+   void keyPressed() {
      
-       float change = 0.01; 
+       float change = 0.001; 
        
        if (key == '1'){
-           S_C += 0.01;
+           S_C += change;
        }
        if (key == '2') {
            if (S_C - change >= 0) {
-               S_C -= 0.01;
+               S_C -= change;
            }
        }
        if (key == '3') {
-           S_D += 0.01;
+           S_D += change;
        }
        if (key == '4') {
            if (S_D - change >= 0) {
-               S_D -= 0.01;
+               S_D -= change;
            }
        }
        if (key == '5') {
-           S_L += 0.01;
+           S_L += change;
        }
        if (key == '6') {
            if (S_L - change >= 0) {
-               S_L -= 0.01;
+               S_L -= change;
            }
        }
        if (key == '7') {
-           g += 0.01;
+           g += change;
        }
-       if (key == '8') {
-           if (g - change>= 0) {
-               g -= 0.01;
+       if (key == 8) {
+           if (g - change >= 0) {
+               g -= change;
            }
        }
 
