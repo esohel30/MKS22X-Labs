@@ -24,9 +24,7 @@
       text( "spring length: " + S_L, 19, 59); 
       text( "gravity: " + g, 19, 79);
       text( "spring constant: " + S_C, 19, 19); 
-      text( "spring dampen: " + S_D, 19, 39); 
-  
-      
+      text( "spring dampen: " + S_D, 19, 39);       
   }
 
 
@@ -38,10 +36,14 @@
       float radius;
       color c;
       OrbNode next, prev;
+      
+      //default constructor 
       public OrbNode() {}
+      
       public OrbNode(float x_, float y_) {
           this(x_, y_, 0.0, 0.0, 50.0);
       }
+      
       public OrbNode(float x_, float y_, float dx_, float dy_, float radius_) {
           x = x_;
           y = y_;
@@ -50,16 +52,23 @@
           radius = radius_;
           c = color(random(255), random(255), random(255), 200);
       }
-      /**
-       *complete this method
-       */
+      
       void display() {
           fill(c);
           ellipse(x, y, radius * 2, radius * 2);
           //If next or previous exist, draw lines to them! (aim for slightly off center)
           /*you write this part*/
-
-
+          if(next != null || prev != null){ 
+            if(next!= null){
+              //if next has value do this. 
+              line(x,y,next.x,next.y);
+            }
+            if(prev != null){
+              // if prev has value do this. 
+              line(x,y,prev.x,prev.y);
+            }
+          }
+       
       }
 
       /**
