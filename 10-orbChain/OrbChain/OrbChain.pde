@@ -137,8 +137,12 @@
        *process all nodes by running move.
        */
       void processAll() {
-          OrbNode current = first;
+          OrbNode c = first;
           //advance current to next until it is null, move() each of the nodes
+          while(c != null){ 
+            c.move();
+            c = c.next;
+          }
       }
       /**
        *complete this method
