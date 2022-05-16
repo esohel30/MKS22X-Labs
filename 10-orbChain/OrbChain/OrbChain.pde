@@ -92,6 +92,7 @@
           other.dy *= S_D;
       }
   }
+  
   //this COULD be a separate tab but is small enough
   //that it doesn't matter for organizational purposes.
   public class FixedOrbNode extends OrbNode {
@@ -120,8 +121,15 @@
       /**
        *complete this method
        */
-      void add(OrbNode orb) {
+      void add(OrbNode node) {
+          node.prev = last.prev;
           //insert orb at the end of the list before the last node.
+          node.prev.next = node;
+          // after this have to set next to last 
+          node.next =last; 
+          //then set prev of last to node?
+          last.prev = node;
+          
       }
 
       /**
