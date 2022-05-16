@@ -1,16 +1,16 @@
-   static int SPRING = 2;
-   static float SPRING_LENGTH = 50;
-   static float SPRING_DAMPEN = 0.990;
-   static float SPRING_CONSTANT = 0.015;
-   static int MODE = SPRING;
+   static int S = 2;
+   static float S_L = 50;
+   static float S_D = 0.990;
+   static float S_C = 0.015;
+   static int M = S;
    static float g = 0.40; 
-   
   OrbList orbs;
   
   void setup() {
       size(1000, 800);
       orbs = new OrbList();
   }
+  
   void mouseClicked() {
       orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
   }
@@ -18,6 +18,12 @@
       background(255);
       orbs.processAll();
       orbs.display();
+      
+      text( "spring constant: " + S_C, 20, 20); 
+      text( "spring dampen: " + S_D, 20, 40); 
+      text( "spring length: " + S_L, 20, 60); 
+
+      
   }
 
 
