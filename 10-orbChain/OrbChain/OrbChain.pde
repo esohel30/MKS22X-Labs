@@ -35,7 +35,7 @@
            S_C += 0.01;
        }
        if (key == '2') {
-           if (S_C - change > 0) {
+           if (S_C - change >= 0) {
                S_C -= 0.01;
            }
        }
@@ -43,7 +43,7 @@
            S_D += 0.01;
        }
        if (key == '4') {
-           if (S_D - change > 0) {
+           if (S_D - change >= 0) {
                S_D -= 0.01;
            }
        }
@@ -51,7 +51,7 @@
            S_L += 0.01;
        }
        if (key == '6') {
-           if (S_L - change > 0) {
+           if (S_L - change >= 0) {
                S_L -= 0.01;
            }
        }
@@ -59,7 +59,7 @@
            g += 0.01;
        }
        if (key == '8') {
-           if (g - change> 0) {
+           if (g - change>= 0) {
                g -= 0.01;
            }
        }
