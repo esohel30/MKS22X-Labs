@@ -67,33 +67,29 @@
               // if prev has value do this. 
               line(x,y,prev.x,prev.y);
             }
-          }
-       
+          } 
       }
 
-      /**
-       *complete this method
-       */
       void move() {
           //have prev and next apply spring force to this node;
           /*you write this part*/
-
+          prev.springAttract(this);
+          next.springAttract(this);
           //apply velocity to position
           x += dx;
           y += dy;
-          //apply gravity
-          dy += 0.35;
+          dy = dy + g;
       }
 
       void springAttract(OrbNode other) {
           float dist = dist(x, y, other.x, other.y);
-          float force = (dist - SPRING_LENGTH) * SPRING_CONSTANT;
+          float force = (dist - S_L) * S_C;
           float displacex = (x - other.x);
           float displacey = (y - other.y);
           other.dx += displacex * force / dist;
           other.dy += displacey * force / dist;
-          other.dx *= SPRING_DAMPEN;
-          other.dy *= SPRING_DAMPEN;
+          other.dx *= S_D;
+          other.dy *= S_D;
       }
   }
   //this COULD be a separate tab but is small enough
