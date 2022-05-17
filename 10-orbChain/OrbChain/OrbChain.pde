@@ -4,6 +4,7 @@
    static float S_C = 0.015;
    static int M = S;
    static float g = 0.40;
+   static int c_m = 0; 
    OrbList orbs;
 
    void setup() {
@@ -12,8 +13,17 @@
    }
 
    void mouseClicked() {
+       if(c_m == 0){ 
        orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
+       } 
+       if(c_m == 1){ 
+        orbs.add(new OrbNode(mouseX, mouseY,0,0,30)); 
+       } 
+       if(c_m == 2){ 
+        orbs.delete(orbs.getNodeAt(mouseX, mouseY)); 
+       }   
    }
+   
    void draw() {
        background(255);
        orbs.processAll();
@@ -29,40 +39,51 @@
 
    void keyPressed() {
      
-       float change = 0.001; 
+       float change = 1.01; 
        
        if (key == '1'){
-           S_C += change;
+           S_C = S_C * change;
        }
+       
        if (key == '2') {
-           if (S_C - change >= 0) {
-               S_C -= change;
+           if (S_C * (change-0.02) >= 0) {
+               S_C = S_C * (change - 0.02);
            }
        }
+       
        if (key == '3') {
-           S_D += change;
+         if(S_D * change < 1.0){ // to big starts acting weird
+           S_D = S_D * change;
+         }
        }
+       
        if (key == '4') {
-           if (S_D - change >= 0) {
-               S_D -= change;
+           if (S_D * (change -0.02) >= 0) {
+               S_D = S_D * (change-0.02);
            }
        }
+       
        if (key == '5') {
-           S_L += change;
+           S_L = S_L * change;
        }
+       
        if (key == '6') {
-           if (S_L - change >= 0) {
-               S_L -= change;
+           if (S_L * (change -0.02) >= 0) {
+               S_L = S_L * (change - 0.02);
            }
        }
+       
        if (key == '7') {
-           g += change;
+           g = g * change;
        }
+       
        if (key == 8) {
-           if (g - change >= 0) {
-               g -= change;
+           if (g * (change -0.02) >= 0) {
+               g = g * (change -0.02);
            }
        }
+       
+       
 
 
    }
