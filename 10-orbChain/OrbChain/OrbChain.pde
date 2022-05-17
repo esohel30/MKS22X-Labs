@@ -1,33 +1,33 @@
    static int S = 2;
-   static float S_L = 50;
-   static float S_D = 0.990;
-   static float S_C = 0.015;
+   static float S_L = 51;
+   static float S_D = 0.991;
+   static float S_C = 0.016;
    static int M = S;
    static float g = 0.40;
    static int C_M = 0; 
-   OrbList orbs;
+   OrbList listorbs;
 
    void setup() {
        size(1000, 800);
-       orbs = new OrbList();
+       listorbs = new OrbList();
    }
 
    void mouseClicked() {
        if(C_M == 0){ 
-       orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
+       listorbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
        } 
        if(C_M == 1){ 
-        orbs.add(new OrbNode(mouseX, mouseY,0,0,30)); 
+        listorbs.add(new OrbNode(mouseX, mouseY,0,0,30)); 
        } 
        if(C_M == 2){ 
-        orbs.delete(orbs.getNodeAt(mouseX, mouseY)); 
+        listorbs.delete(listorbs.getNodeAt(mouseX, mouseY)); 
        }   
    }
    
    void draw() {
        background(255);
-       orbs.processAll();
-       orbs.display();
+       listorbs.processAll();
+       listorbs.display();
 
 
        // code to display test, representing values. 
@@ -89,14 +89,8 @@
                g = g * (change -0.02);
            }
        }
-       
-       
-
 
    }
-
-
-
 
 
    public class OrbNode {
@@ -125,8 +119,6 @@
        void display() {
            fill(c);
            ellipse(x, y, radius * 2, radius * 2);
-           //If next or previous exist, draw lines to them! (aim for slightly off center)
-           /*you write this part*/
            if (next != null || prev != null) {
                if (next != null) {
                    //if next has value do this. 
@@ -140,11 +132,8 @@
        }
 
        void move() {
-           //have prev and next apply spring force to this node;
-           /*you write this part*/
            prev.springAttract(this);
            next.springAttract(this);
-           //apply velocity to position
            x += dx;
            y += dy;
            dy = dy + g;
@@ -162,8 +151,6 @@
        }
    }
 
-   //this COULD be a separate tab but is small enough
-   //that it doesn't matter for organizational purposes.
    public class FixedOrbNode extends OrbNode {
        void move() {}
        FixedOrbNode(float x_, float y_) {
