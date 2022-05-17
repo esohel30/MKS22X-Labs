@@ -197,6 +197,29 @@
           e.prev = t; 
           t.next = e;  
        } 
+       
+       void delete(OrbNode lockedon){ 
+         if(lockedon != null){ 
+           lockedon.prev.next = lockedon.next; 
+           //this deletes what was there 
+           lockedon.next.prev = lockedon.prev;
+         }
+       } 
+       
+       OrbNode getNodeAt(int corxpos, int corypos){ 
+         OrbNode temp = f.next;
+         OrbNode t = f. next; 
+         int val = 25; 
+         
+         while(temp.next != null){ 
+           if(dist(corxpos,corypos,temp.x, temp.y) < val){ 
+             return temp; 
+           } 
+           temp = temp.next; 
+         }
+         return null;     
+       } 
+       
 
        /**
         *complete this method
