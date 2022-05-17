@@ -163,30 +163,40 @@
 
 
    public class OrbList {
-       OrbNode first, last;
+       OrbNode f, l;
 
        //create a fixed orb
        OrbList() {
-           first = new FixedOrbNode(0, height / 5);
-           last = new FixedOrbNode(width, height / 5);
+           f = new FixedOrbNode(0, height / 5);
+           l = new FixedOrbNode(width, height / 5);
            //link them to eachother
-           first.next = last;
-           last.prev = first;
+           f.next = l;
+           l.prev = f;
        }
 
        /**
         *complete this method
         */
        void add(OrbNode node) {
-           node.prev = last.prev;
+           node.prev = l.prev;
            //insert orb at the end of the list before the last node.
            node.prev.next = node;
            // after this have to set next to last 
-           node.next = last;
+           node.next = l;
            //then set prev of last to node?
-           last.prev = node;
-
+           l.prev = node;
        }
+       
+       void add(int x, OrbNode t){ 
+          OrbNode e = f; 
+          while(e.next != null && x > e.x){ 
+            e = e.next; 
+          }
+          e.prev.next = t; 
+          t.prev = e.prev; 
+          e.prev = t; 
+          t.next = e;  
+       } 
 
        /**
         *complete this method
@@ -194,7 +204,7 @@
         */
        void processAll() {
            //advance current to next until it is null, move() each of the nodes
-           for (OrbNode c = first; c != null; c = c.next) {
+           for (OrbNode c = f; c != null; c = c.next) {
                c.move();
            }
        }
@@ -204,7 +214,7 @@
         *Display all nodes by running their display().
         */
        void display() {
-           for (OrbNode c = first; c != null; c = c.next) {
+           for (OrbNode c = f; c != null; c = c.next) {
                c.display();
            }
        }
