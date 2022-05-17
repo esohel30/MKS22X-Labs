@@ -35,7 +35,15 @@
        text("gravity: " + g, 19, 79);
        text("spring constant: " + S_C, 19, 19);
        text("spring dampen: " + S_D, 19, 39);
-       text("click mode" + C_M, 19, 99); 
+       if(C_M == 0){ 
+       text("click mode: " + "add", 19, 99); 
+       }
+       if(C_M == 1){ 
+       text("click mode: " + "insert", 19, 99); 
+       } 
+       if(C_M == 2){ 
+       text("click mode: " + "delete", 19, 99); 
+       } 
    }
 
    void keyPressed() {
