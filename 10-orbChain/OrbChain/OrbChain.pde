@@ -16,10 +16,10 @@
        if(C_M == 0){ 
        listorbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
        } 
-       if(C_M == 1){ 
-        listorbs.add(new OrbNode(mouseX, mouseY,0,0,30)); 
+       else if(C_M == 1){ 
+        listorbs.add(mouseX, new OrbNode(mouseX, mouseY,0,0,30)); 
        } 
-       if(C_M == 2){ 
+       else if(C_M == 2){ 
         listorbs.delete(listorbs.getNodeAt(mouseX, mouseY)); 
        }   
    }
@@ -35,6 +35,7 @@
        text("gravity: " + g, 19, 79);
        text("spring constant: " + S_C, 19, 19);
        text("spring dampen: " + S_D, 19, 39);
+       text("click mode" + C_M, 19, 99); 
    }
 
    void keyPressed() {
@@ -84,10 +85,8 @@
            g = g * change;
        }
        
-       if (key == 8) {
-           if (g * (change -0.02) >= 0) {
-               g = g * (change -0.02);
-           }
+       if (key == '8') {
+               g = g * (change - 0.02);
        }
 
    }
