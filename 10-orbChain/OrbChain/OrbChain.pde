@@ -4,7 +4,7 @@
    static float S_C = 0.015;
    static int M = S;
    static float g = 0.40;
-   static int c_m = 0; 
+   static int C_M = 0; 
    OrbList orbs;
 
    void setup() {
@@ -13,13 +13,13 @@
    }
 
    void mouseClicked() {
-       if(c_m == 0){ 
+       if(C_M == 0){ 
        orbs.add(new OrbNode(mouseX, mouseY, 0, 0, 30));
        } 
-       if(c_m == 1){ 
+       if(C_M == 1){ 
         orbs.add(new OrbNode(mouseX, mouseY,0,0,30)); 
        } 
-       if(c_m == 2){ 
+       if(C_M == 2){ 
         orbs.delete(orbs.getNodeAt(mouseX, mouseY)); 
        }   
    }
@@ -40,6 +40,13 @@
    void keyPressed() {
      
        float change = 1.01; 
+       
+       if(key == ' '){ 
+         C_M = C_M + 1; 
+         if(C_M == 3){ // there are only three modes 
+           C_M = 0; 
+         }
+       } 
        
        if (key == '1'){
            S_C = S_C * change;
