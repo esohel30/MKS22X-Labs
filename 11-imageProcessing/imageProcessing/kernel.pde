@@ -1,11 +1,11 @@
 public class Kernel {
-      float[][]data;
+      float[][]kern;
 
       /**Constructor takes the kernel that will be applied to the image
       *This implementation only allows 3x3 kernels
       */
       public Kernel(float[][]n) {
-        data = n; 
+        kern = n; 
       }
 
       /**If part of the kernel is off of the image, return black, Otherwise
@@ -22,13 +22,21 @@ public class Kernel {
         final int start = 0; 
         color black = color(0); 
         int red = 0, green = 0, blue = 0; 
+        color og; 
+        float t; 
         
         if(x == start || y == start || x == temp || y == temp2){ 
           return black ; 
         }
-        for(int a = 0; a < data.length; a++){ 
-          for(int b =0; b <data[a].length; b++){ 
+        for(int a = 0; a < kern.length; a++){ 
+          for(int b =0; b <kern[a].length; b++){
+            og = img.get(x + b - 1, y + a - 1); 
+            t = kern[a][b];
+            red += red(og) * t; 
+            green += green(og) * t; 
+            blue += blue(og) * t; 
           }
+          
         }
         
         
