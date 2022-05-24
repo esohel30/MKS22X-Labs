@@ -29,15 +29,39 @@ public class Kernel {
           return black ; 
         }
         for(int a = 0; a < kern.length; a++){ 
-          for(int b =0; b <kern[a].length; b++){
+          for(int b = 0; b <kern[a].length; b++){
             og = img.get(x + b - 1, y + a - 1); 
             t = kern[a][b];
             red += red(og) * t; 
             green += green(og) * t; 
             blue += blue(og) * t; 
           }
-          
         }
+        if(red < 0 || green < 0 || blue < 0){ 
+          if(red < 0){ 
+            red =0; 
+          } 
+          if(green < 0){ 
+            green =0; 
+          } 
+          if(blue < 0){ 
+            blue =0; 
+          } 
+        }
+        if(red > 255 || green > 255 || blue > 255){ 
+          if(red > 255){ 
+            red = 255; 
+          } 
+          if(green > 255){ 
+            green = 255; 
+          } 
+          if(blue  > 255){ 
+            blue = 255; 
+          } 
+        }
+        
+        
+          
         
         
         
