@@ -5,6 +5,7 @@ public class Kernel {
       *This implementation only allows 3x3 kernels
       */
       public Kernel(float[][]init) {
+        kernel = init; 
       }
 
       /**If part of the kernel is off of the image, return black, Otherwise
@@ -12,9 +13,11 @@ public class Kernel {
       *if the calculation for any of the r,g,b values is outside the range
       *     0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
       */
+      
       color calcNewColor(PImage img, int x, int y) {
         //Hint: start by always returning black.
         //This will let you test your apply method right away!
+        
 
       }
 
