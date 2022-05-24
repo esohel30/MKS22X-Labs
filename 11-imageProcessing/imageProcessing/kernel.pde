@@ -67,13 +67,12 @@ public class Kernel {
    *and saves the data to the destination.*/
   void apply(PImage s, PImage dest) {
 
-    for(int a =0; a < s.width; a ++){ 
-      for(int b = 0; b < s.height; b++){ 
-        
+    for (int a =0; a < s.width; a ++) { 
+      for (int b = 0; b < s.height; b++) { 
+
         // must type cast the calc new color output to int. 
-        dest.set(a,b, (int) calcNewColor(s, a, b)); 
+        dest.set(a, b, (int) calcNewColor(s, a, b));
       }
-    } 
-    
+    }
   }
 }
