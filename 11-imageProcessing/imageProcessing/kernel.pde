@@ -17,6 +17,24 @@ public class Kernel {
       color calcNewColor(PImage img, int x, int y) {
         //Hint: start by always returning black.
         //This will let you test your apply method right away!
+        int temp = img.width - 1; 
+        int temp2 = img.height -1; 
+        final int start = 0; 
+        color black = color(0); 
+        int red = 0, green = 0, blue = 0; 
+        
+        if(x == start || y == start || x == temp || y == temp2){ 
+          return black ; 
+        }
+        for(int a = 0; a < data.length; a++){ 
+          for(int b =0; b <data[a].length; b++){ 
+          }
+        }
+        
+        
+        
+        
+        
         
         
         
